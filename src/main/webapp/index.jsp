@@ -123,7 +123,7 @@
                         <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Obra de Arte 1">
                         <div class="card-body">
                             <h5 class="card-title">Título de Obra 1</h5>
-                            <p class="card-text">Descripción breve de la obra de arte. Artista: Juan Pérez. Precio: $500.</p>
+                            <p class="card-text">Descripción breve de la obra de arte. Artista: Juan Pérez. Precio: $1000.</p>
                             <a href="#" class="btn btn-view">Ver</a>
                             <a href="#" class="btn btn-edit">Modificar</a>
                             <a href="#" class="btn btn-delete">Eliminar</a>
