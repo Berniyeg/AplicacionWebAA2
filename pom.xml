@@ -43,7 +43,7 @@
 
         <dependency>
             <groupId>org.jdbi</groupId>
-            <artifactId>jdbi3-oracle12</artifactId>
+            <artifactId>jdbi3-sqlobject</artifactId>
             <version>3.39.1</version>
         </dependency>
 

@@ -1,3 +1,7 @@
+<%@ page import="com.svalero.artmarket.dao.Database" %>
+<%@ page import="com.svalero.artmarket.domain.Artwork" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.svalero.artmarket.dao.ArtworkDao" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -158,6 +162,19 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div>
+        <ul class="list-group">
+        <%
+            Database.connect();
+            List<Artwork> artworks = Database.jdbi.withExtension(ArtworkDao.class, dao -> dao.getAllArtworks());
+            for (Artwork artwork : artworks) {
+        %>
+            <li class="list-group-item"><%= artwork.getTitle()%></li>
+        <%
+            }
+        %>
+        </ul>
     </div>
 </main>
 
