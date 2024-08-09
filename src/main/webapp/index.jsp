@@ -170,10 +170,11 @@
             List<Artwork> artworks = Database.jdbi.withExtension(ArtworkDao.class, dao -> dao.getAllArtworks());
             for (Artwork artwork : artworks) {
         %>
-            <li class="list-group-item"><%= artwork.getTitle()%></li>
+            <li class="list-group-item text-dark" ><%= artwork.getTitle() %></li>
         <%
             }
         %>
+            <br>
         </ul>
     </div>
 </main>
