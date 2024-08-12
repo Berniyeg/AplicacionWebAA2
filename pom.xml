@@ -71,7 +71,7 @@
                 <configuration>
                     <url>http://localhost:8084/manager/text</url>
                     <server>tomcat9</server>
-                    <path>/tienda</path>
+                    <path>/ArtMarket</path>
                     <username>tomcat</username>
                     <password>tomcat</password>
                 </configuration>
