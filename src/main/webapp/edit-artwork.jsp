@@ -5,7 +5,7 @@
 <body>
 <div class="container mt-5">
     <h2>Create Artwork</h2>
-    <form>
+    <form action="edit-artwork" method="post">
         <!-- Title -->
         <div class="form-group">
             <label for="title">Title</label>

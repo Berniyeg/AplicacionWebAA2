@@ -26,7 +26,7 @@
                             <p class="card-artist">Artista: Juan Pérez.</p>
                             <p class="card-price">Price: <%= artwork.getPrice()%></p>
                             <a href="view-artwork.jsp" class="btn btn-view">Ver</a>
-                            <a href="edit-artwork.jsp" class="btn btn-edit">Modificar</a>
+                            <a href="#" class="btn btn-edit">Modificar</a>
                             <a href="#" class="btn btn-delete">Eliminar</a>
                         </div>
                     </div>
