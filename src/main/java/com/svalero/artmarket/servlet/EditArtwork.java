@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
 
 @WebServlet("/edit-artwork")
 
@@ -26,9 +28,20 @@ public class EditArtwork extends HttpServlet {
             Database.connect();
             int affectRows = Database.jdbi.withExtension(ArtworkDao.class,
                     dao -> dao.addArtwork(title, description, price, picture));
-        } catch (Exception pe) {
-            pe.printStackTrace();
+            response.getWriter().println("<div class='alert alert-success' role='alert'>" +
+                    "Registrado correctamente </div>");
+        } catch (NumberFormatException nfe) {
+            nfe.printStackTrace();
+            response.getWriter().println("<div class='alert alert-danger' role='alert'>" +
+                    "El formato de precio no es correcto </div>");
+        } catch (ClassNotFoundException cnfe){
+            cnfe.printStackTrace();
+            response.getWriter().println("<div class='alert alert-danger' role='alert'>" +
+                    "Internal Server Error </div>");
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            response.getWriter().println("<div class='alert alert-danger' role='alert'>" +
+                    "Error al conectar con la base de datos </div>");
         }
-
     }
 }
