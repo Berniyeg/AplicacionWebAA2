@@ -1,12 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@include file="includes/header-style.jsp"%>
 
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("form").on("submit", function(event) {
+            event.preventDefault();
+            var formValue = $(this).serialize();
+            $.post("edit-artwork", formValue, function(data) {
+                $("#result").html(data);
+            });
+        });
+    });
+</script>
 
 <body>
 <div class="container mt-5">
     <h2>Create Artwork</h2>
-    <form action="edit-artwork" method="post">
+    <form>
         <!-- Title -->
         <div class="form-group">
             <label for="title">Title</label>
@@ -38,15 +48,14 @@
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary" id="edit-button">Submit</button>
     </form>
+
+    <div id="result"></div>
+
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 
 <%@include file="includes/footer.jsp"%>
