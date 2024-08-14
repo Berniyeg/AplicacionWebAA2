@@ -14,6 +14,6 @@ public interface ArtworkDao {
     @UseRowMapper(ArtworkMapper.class)
     List<Artwork> getAllArtworks();
 
-    @SqlUpdate("INSERT INTO artworks (title, description, price, picture VALUES (?, ?, ?, ?, ?)")
+    @SqlUpdate("INSERT INTO artworks (title, description, price, picture) VALUES (?, ?, ?, ?)")
     int addArtwork(String title, String description, float price, String picture);
 }

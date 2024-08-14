@@ -2,6 +2,7 @@
 <%@include file="includes/header-style.jsp"%>
 
 
+
 <body>
 <div class="container mt-5">
     <h2>Create Artwork</h2>
@@ -35,7 +36,7 @@
 
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" id="edit-button">Submit</button>
     </form>
 </div>
 
