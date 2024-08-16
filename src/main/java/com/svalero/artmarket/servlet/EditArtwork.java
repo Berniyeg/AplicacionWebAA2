@@ -29,7 +29,7 @@ public class EditArtwork extends HttpServlet {
             int affectRows = Database.jdbi.withExtension(ArtworkDao.class,
                     dao -> dao.addArtwork(title, description, price, picture));
             response.getWriter().println("<div class='alert alert-success' role='alert'>" +
-                    "Registrado correctamente </div>");
+                    "Artwork uploaded correctly </div>");
         } catch (NumberFormatException nfe) {
             nfe.printStackTrace();
             response.getWriter().println("<div class='alert alert-danger' role='alert'>" +

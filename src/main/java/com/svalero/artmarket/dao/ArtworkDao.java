@@ -16,4 +16,8 @@ public interface ArtworkDao {
 
     @SqlUpdate("INSERT INTO artworks (title, description, price, picture) VALUES (?, ?, ?, ?)")
     int addArtwork(String title, String description, float price, String picture);
+
+    @SqlUpdate("DELETE FROM artworks WHERE id = ?")
+    int removeArtwork(int id);
+
 }
