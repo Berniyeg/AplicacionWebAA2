@@ -17,7 +17,7 @@
                     for (Artwork artwork : artworks) {
                 %>
                 <!-- Ejemplo de una obra de arte -->
-                <div class="col-md-4">
+                <div class="col-md-4" id="artwork-<%= artwork.getId()%>">
                     <div class="card">
                         <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Obra de Arte 1">
                         <div class="card-body">
@@ -27,7 +27,8 @@
                             <p class="card-price">Price: <%= artwork.getPrice()%></p>
                             <a href="view-artwork.jsp" class="btn btn-view">Ver</a>
                             <a href="#" class="btn btn-edit">Modificar</a>
-                            <a href="#" class="btn btn-delete">Eliminar</a>
+                            <a href="javascript:void(0);" class="btn btn-delete"
+                               onclick="eliminarArtwork(<%= artwork.getId()%>)">Eliminar</a>
                         </div>
                     </div>
                 </div>
@@ -41,5 +42,6 @@
     </div>
 </main>
 
+<%@include file="includes/remove-ajax.jsp"%>
 
-<%@include file="includes/footer.jsp"%>
+ <%@include file="includes/footer.jsp"%>
