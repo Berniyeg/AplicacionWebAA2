@@ -24,6 +24,10 @@ public interface ArtworkDao {
     @SqlQuery("SELECT COUNT(*) FROM artworks WHERE title = ?")
     int countArtworkByTitle(String title);
 
+    @SqlUpdate ("UPDATE artworks SET title = ?, description = ?, price = ?, picture = ? WHERE id = ?")
+    int updateArtwork (String title, String description, float price, String picture, int id);
+
     @SqlUpdate("DELETE FROM artworks WHERE id = ?")
     int removeArtwork(int id);
+
 }
