@@ -1,7 +1,24 @@
+<%@ page import="com.svalero.artmarket.domain.Artwork" %>
+<%@ page import="com.svalero.artmarket.dao.Database" %>
+<%@ page import="com.svalero.artmarket.dao.ArtworkDao" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%@include file="includes/header-style.jsp"%>
 <%@include file="includes/edit-ajax.jsp"%>
+
+<%
+    int id;
+    Artwork artwork = null;
+    if (request.getParameter("id") == null) {
+        // Se accede al formulario para crear una nueva actividad
+        id = 0;
+    } else {
+        // Se accede al formulario para editar una actividad existente
+        id = Integer.parseInt(request.getParameter("id"));
+        Database.connect();
+        artwork = Database.jdbi.withExtension(ArtworkDao.class, dao -> dao.getArtwork(id));
+    }
+%>
 
 <body>
 <div class="container mt-5">
@@ -10,21 +27,23 @@
         <!-- Title -->
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Starry Night" required maxlength="100">
+            <input type="text" class="form-control" id="title" name="title" placeholder="Starry Night"
+                <% if (id != 0) { %> value="<%= artwork.getTitle() %>"<% } %> required maxlength="100">
         </div>
 
         <!-- Description -->
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description"
-                      placeholder="A famous painting by Vincent van Gogh" rows="3" maxlength="255"></textarea>
+            <textarea class="form-control" id="description" name="description" placeholder="A famous painting by Vincent van Gogh" rows="3"
+                      maxlength="255"> <% if (id != 0) { %> <%= artwork.getDescription() %><% } %>
+            </textarea>
         </div>
 
         <!-- Price -->
         <div class="form-group">
             <label for="price">Price</label>
-            <input type="number" step="1.00" class="form-control" id="price"
-                   name="price" placeholder="1500,00" required>
+            <input type="number" step="1.00" class="form-control" id="price" name="price" placeholder="1500,00"
+                <% if (id != 0) { %> value="<%= artwork.getPrice() %>"<% } %> required>
         </div>
 
         <!-- Picture -->
@@ -34,9 +53,9 @@
                    name="picture" placeholder="starry_night.jpg" maxlength="50">
         </div>
 
-
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary" id="edit-button">Submit</button>
+        <input type="hidden" name="id" value="<%= id %>"/>
     </form>
 
     <div id="result"></div>
