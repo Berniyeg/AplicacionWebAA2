@@ -77,12 +77,8 @@
                     <p class="card-text"><%= artwork.getDescription() %>
                     </p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Artista:</strong> Juan Pérez</li>
                         <li class="list-group-item"><strong>Precio:</strong> <%= CurrencyUtils.format(artwork.getPrice()) %>
                         </li>
-                        <li class="list-group-item"><strong>Año de Creación:</strong> 2023</li>
-                        <li class="list-group-item"><strong>Tamaño:</strong> 60x80 cm</li>
-                        <li class="list-group-item"><strong>Técnica:</strong> Óleo sobre lienzo</li>
                     </ul>
                     <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
                 </div>

@@ -7,6 +7,17 @@
 
 <%@include file="includes/header-style.jsp"%>
 
+<!-- Cabecera -->
+<header class="header">
+    <div class="container">
+        <h1 class="display-4">Bienvenido al Mercado de Arte</h1>
+        <p class="lead">Descubre y compra obras de arte únicas de artistas talentosos.</p>
+    </div>
+    <div class="nav-item">
+        <a class="nav-link highlight" href="edit-artwork.jsp">Subir Obra</a>
+    </div>
+</header>
+
 <main role="main" class="container">
     <div class="artwork py-5">
         <div class="container">
