@@ -22,8 +22,12 @@
 
 <body>
 <div class="container mt-5">
-    <h2>Create Artwork</h2>
-    <form>
+    <% if (id == 0) { %>
+        <h2>Create New Artwork</h2>
+    <% } else { %>
+        <h2>Modify Artwork</h2>
+    <% } %>
+    <form id="artwork-form" enctype="multipart/form-data">
         <!-- Title -->
         <div class="form-group">
             <label for="title">Title</label>
@@ -42,7 +46,7 @@
         <!-- Price -->
         <div class="form-group">
             <label for="price">Price</label>
-            <input type="number" step="1.00" class="form-control" id="price" name="price" placeholder="1500,00"
+            <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="1500.00"
                 <% if (id != 0) { %> value="<%= artwork.getPrice() %>"<% } %> required>
         </div>
 
@@ -54,7 +58,13 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary" id="edit-button">Submit</button>
+        <button type="submit" class="btn btn-primary" id="edit-button">
+            <% if (id == 0) { %>
+                Submit
+            <% } else { %>
+                Modify
+            <% } %>
+        </button>
         <input type="hidden" name="id" value="<%= id %>"/>
     </form>
 

@@ -1,6 +1,7 @@
 <%@ page import="com.svalero.artmarket.dao.Database" %>
 <%@ page import="com.svalero.artmarket.domain.Artwork" %>
 <%@ page import="com.svalero.artmarket.dao.ArtworkDao" %>
+<%@ page import="com.svalero.artmarket.util.CurrencyUtils" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <head>
@@ -67,7 +68,7 @@
     <div class="card">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="https://via.placeholder.com/350x350" class="card-img" alt="Obra de Arte Detalle">
+                <img src="../artmarket_pictures/<%= artwork.getPicture() %>" class="card-img" alt="Obra de Arte Detalle">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -77,7 +78,7 @@
                     </p>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><strong>Artista:</strong> Juan Pérez</li>
-                        <li class="list-group-item"><strong>Precio:</strong> <%= artwork.getPrice() %>
+                        <li class="list-group-item"><strong>Precio:</strong> <%= CurrencyUtils.format(artwork.getPrice()) %>
                         </li>
                         <li class="list-group-item"><strong>Año de Creación:</strong> 2023</li>
                         <li class="list-group-item"><strong>Tamaño:</strong> 60x80 cm</li>

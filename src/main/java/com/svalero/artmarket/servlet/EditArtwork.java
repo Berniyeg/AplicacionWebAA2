@@ -2,15 +2,23 @@ package com.svalero.artmarket.servlet;
 
 import com.svalero.artmarket.dao.ArtworkDao;
 import com.svalero.artmarket.dao.Database;
-
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.UUID;
 
+@MultipartConfig
 @WebServlet("/edit-artwork")
 
 public class EditArtwork extends HttpServlet {
@@ -30,10 +38,20 @@ public class EditArtwork extends HttpServlet {
             String title = request.getParameter("title");
             String description = request.getParameter("description");
             float price = Float.parseFloat(request.getParameter("price"));
-            String picture = request.getParameter("picture");
+            Part picturePart = request.getPart("picture");
+
+            String imagePath = request.getServletContext().getInitParameter("image-path");
+            String filename = null;
+            if (picturePart.getSize() == 0) {
+                filename = "no-image.jpg";
+            } else {
+                filename = UUID.randomUUID() + ".jpg";
+                InputStream fileStream = picturePart.getInputStream();
+                Files.copy(fileStream, Path.of(imagePath + File.separator + filename));
+            }
 
             Database.connect();
-
+            final String finalFilename = filename;
             // Verificar si la obra ya existe
             int existingArtworkCount = Database.jdbi.withExtension(ArtworkDao.class,
                     dao -> dao.countArtworkByTitle(title));
@@ -50,7 +68,7 @@ public class EditArtwork extends HttpServlet {
             if (id == 0) {
                 // Insertar la obra si no existe
                 affectedRows = Database.jdbi.withExtension(ArtworkDao.class,
-                        dao -> dao.addArtwork(title, description, price, picture));
+                        dao -> dao.addArtwork(title, description, price, finalFilename));
 
                 if (affectedRows > 0) {
                     response.getWriter().println("<div class='alert alert-success' role='alert'>" +
@@ -62,7 +80,7 @@ public class EditArtwork extends HttpServlet {
             } else {
                 // Modificar la obra existente
                 affectedRows = Database.jdbi.withExtension(ArtworkDao.class,
-                        dao -> dao.updateArtwork(title, description, price, picture, id));
+                        dao -> dao.updateArtwork(title, description, price, finalFilename, id));
 
                 if (affectedRows > 0) {
                     response.getWriter().println("<div class='alert alert-success' role='alert'>" +
@@ -73,10 +91,6 @@ public class EditArtwork extends HttpServlet {
                 }
             }
 
-        } catch (NumberFormatException nfe) {
-            nfe.printStackTrace();
-            response.getWriter().println("<div class='alert alert-danger' role='alert'>" +
-                    "El formato de precio no es correcto.</div>");
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();
             response.getWriter().println("<div class='alert alert-danger' role='alert'>" +

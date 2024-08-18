@@ -2,6 +2,7 @@
 <%@ page import="com.svalero.artmarket.domain.Artwork" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.svalero.artmarket.dao.ArtworkDao" %>
+<%@ page import="com.svalero.artmarket.util.CurrencyUtils" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%@include file="includes/header-style.jsp"%>
@@ -18,12 +19,12 @@
                 <!-- Ejemplo de una obra de arte -->
                 <div class="col-md-4" id="artwork-<%= artwork.getId()%>">
                     <div class="card">
-                        <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Obra de Arte 1">
+                        <img src="../artmarket_pictures/<%= artwork.getPicture() %>" class="card-img-top" alt="Obra de Arte 1">
                         <div class="card-body">
                             <h5 class="card-title"><%= artwork.getTitle() %></h5>
                             <p class="card-text"><%= artwork.getDescription() %></p>
                             <p class="card-artist">Artista: Juan Pérez.</p>
-                            <p class="card-price">Price: <%= artwork.getPrice() %></p>
+                            <p class="card-price">Price: <%= CurrencyUtils.format(artwork.getPrice()) %></p>
                             <a href="view-artwork.jsp?id=<%= artwork.getId() %>" class="btn btn-view">Ver</a>
                             <a href="edit-artwork.jsp?id=<%= artwork.getId() %>" class="btn btn-edit">Modificar</a>
                             <a href="javascript:void(0);" class="btn btn-delete"

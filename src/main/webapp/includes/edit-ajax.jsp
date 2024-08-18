@@ -3,11 +3,23 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("form").on("submit", function(event) {
+        $("#artwork-form").on("submit", function(event) {
             event.preventDefault();
-            var formValue = $(this).serialize();
-            $.post("edit-artwork", formValue, function(data) {
-                $("#result").html(data);
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: "edit-artwork",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    $("#result").html(data);
+                },
+                error: function(xhr, status, error) {
+                    $("#result").html("<div class='alert alert-danger' role='alert'>Error al enviar el formulario.</div>");
+                }
             });
         });
     });
