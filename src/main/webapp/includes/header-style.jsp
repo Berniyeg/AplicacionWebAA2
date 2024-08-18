@@ -85,9 +85,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link highlight" href="edit-artwork.jsp">Subir Obra</a>
-            </li>
+
             <li class="nav-item">
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Buscar obras" aria-label="Buscar">
@@ -100,18 +98,10 @@
                 <a class="nav-link" href="#" title="Registrar Usuario"><i class="fas fa-user-plus"></i> Registrar</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" title="Acceder al Perfil"><i class="fas fa-user"></i> Perfil</a>
+                <a class="nav-link" href="login.jsp" title="Acceder al Perfil"><i class="fas fa-user"></i> Perfil</a>
             </li>
         </ul>
     </div>
 </nav>
-
-<!-- Cabecera -->
-<header class="header">
-    <div class="container">
-        <h1 class="display-4">Bienvenido al Mercado de Arte</h1>
-        <p class="lead">Descubre y compra obras de arte únicas de artistas talentosos.</p>
-    </div>
-</header>
 
 </body>

@@ -15,8 +15,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.UUID;
+
+import static com.svalero.artmarket.util.ErrorUtil.*;
 
 @MultipartConfig
 @WebServlet("/edit-artwork")
@@ -58,8 +59,7 @@ public class EditArtwork extends HttpServlet {
 
             // Si la obra ya existe y se está intentando crear una nueva, mostrar un mensaje y terminar
             if (existingArtworkCount > 0 && id == 0) {
-                response.getWriter().println("<div class='alert alert-warning' role='alert'>" +
-                        "La obra de arte con ese título ya existe.</div>");
+                sendWarning("La obra de arte con ese título ya existe.", response);
                 return;
             }
 
@@ -71,11 +71,9 @@ public class EditArtwork extends HttpServlet {
                         dao -> dao.addArtwork(title, description, price, finalFilename));
 
                 if (affectedRows > 0) {
-                    response.getWriter().println("<div class='alert alert-success' role='alert'>" +
-                            "Obra de arte subida correctamente.</div>");
+                    sendMessage("Obra de arte subida correctamente.", response);
                 } else {
-                    response.getWriter().println("<div class='alert alert-danger' role='alert'>" +
-                            "Error al subir la obra de arte.</div>");
+                    sendError("Error al subir la obra de arte.", response);
                 }
             } else {
                 // Modificar la obra existente
@@ -83,22 +81,18 @@ public class EditArtwork extends HttpServlet {
                         dao -> dao.updateArtwork(title, description, price, finalFilename, id));
 
                 if (affectedRows > 0) {
-                    response.getWriter().println("<div class='alert alert-success' role='alert'>" +
-                            "Obra de arte modificada correctamente.</div>");
+                    sendMessage("Obra de arte modificada correctamente.", response);
                 } else {
-                    response.getWriter().println("<div class='alert alert-danger' role='alert'>" +
-                            "Error al modificar la obra de arte.</div>");
+                    sendMessage("Error al modificar la obra de arte.", response);
                 }
             }
 
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();
-            response.getWriter().println("<div class='alert alert-danger' role='alert'>" +
-                    "Error interno del servidor.</div>");
+            sendError("Internal Server Error", response);
         } catch (SQLException sqle) {
             sqle.printStackTrace();
-            response.getWriter().println("<div class='alert alert-danger' role='alert'>" +
-                    "Error al conectar con la base de datos.</div>");
+            sendError("Error conectando con la base de datos", response);
         }
     }
 }
