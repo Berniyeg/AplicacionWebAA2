@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <web-app>
     <display-name>Tienda Online Arte</display-name>
+
+    <context-param>
+        <description>Ruta donde guardar las imagenes</description>
+        <param-name>image-path</param-name>
+        <param-value>/Users/bslan/Desktop/apache-tomcat-9.0.89/webapps/artmarket_pictures</param-value>
+    </context-param>
 </web-app>
+
+
