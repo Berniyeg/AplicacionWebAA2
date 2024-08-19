@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static com.svalero.artmarket.util.ErrorUtil.sendError;
+
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
@@ -35,13 +37,8 @@ public class Login extends HttpServlet {
                 session.setAttribute("role", user.getRole());
                 response.getWriter().print("ok");
 
-                if ("admin".equals(user.getRole())) {
-                    response.getWriter().print("admin"); // Indica que el usuario es admin
-                } else {
-                    response.getWriter().print("user"); // Indica que el usuario es un usuario normal
-                }
             } else {
-                response.getWriter().print("error"); // Indica credenciales inválidas
+                sendError("El usuario no existe", response); // Indica credenciales inválidas
             }
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();

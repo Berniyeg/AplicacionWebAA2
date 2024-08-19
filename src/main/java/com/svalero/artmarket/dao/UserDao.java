@@ -17,12 +17,11 @@ public interface UserDao {
     @UseRowMapper(UserMapper.class)
     User getUser(int id);
 
-    // Modificación para Oracle usando DBMS_CRYPTO.HASH para SHA-1
-    @SqlQuery("SELECT * FROM users WHERE username = ? AND password = RAWTOHEX(DBMS_CRYPTO.HASH(UTL_RAW.CAST_TO_RAW(?), DBMS_CRYPTO.HASH_SH1))")
+    @SqlQuery("SELECT * FROM users WHERE username = ? AND password = ?")
     @UseRowMapper(UserMapper.class)
     User getUser(String username, String password);
 
-    @SqlUpdate("INSERT INTO users (username, password, name, email, phone, role) VALUES (?, RAWTOHEX(DBMS_CRYPTO.HASH(UTL_RAW.CAST_TO_RAW(?), DBMS_CRYPTO.HASH_SH1)), ?, ?, ?, ?)")
+    @SqlUpdate("INSERT INTO users (username, password, name, email, phone, role) VALUES (?, ?, ?, ?, ?, ?)")
     int addUser(String username, String password, String name, String phone, String email, String role);
 
     @SqlUpdate("UPDATE users SET username = ?, name = ?, email = ?, phone = ?, role = ? WHERE id = ?")
