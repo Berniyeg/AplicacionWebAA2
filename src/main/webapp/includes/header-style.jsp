@@ -76,6 +76,14 @@
     </style>
 </head>
 
+<%
+    HttpSession currentSession = request.getSession();
+    String role = "anonymous";
+    if (currentSession.getAttribute("role") != null) {
+        role = currentSession.getAttribute("role").toString();
+    }
+%>
+
 <body>
 <!-- Navegación -->
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
@@ -94,14 +102,27 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
+            <%
+                if (role.equals("anonymous")) {
+            %>
             <li class="nav-item">
                 <a class="nav-link" href="#" title="Registrar Usuario"><i class="fas fa-user-plus"></i> Registrar</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="login.jsp" title="Acceder al Perfil"><i class="fas fa-user"></i> Perfil</a>
             </li>
+            <%
+                } else {
+            %>
+            <li class="nav-item">
+                <a class="nav-link" href="logout" title="Cerrar Sesión"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            </li>
+            <%
+                }
+            %>
         </ul>
     </div>
 </nav>
 
 </body>
+

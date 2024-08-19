@@ -14,7 +14,13 @@
         <p class="lead">Descubre y compra obras de arte únicas de artistas talentosos.</p>
     </div>
     <div class="nav-item">
+        <%
+            if (role.equals("admin")) {
+        %>
         <a class="nav-link highlight" href="edit-artwork.jsp">Subir Obra</a>
+        <%
+            }
+        %>
     </div>
 </header>
 
@@ -37,9 +43,15 @@
                             <p class="card-artist">Artista: Juan Pérez.</p>
                             <p class="card-price">Price: <%= CurrencyUtils.format(artwork.getPrice()) %></p>
                             <a href="view-artwork.jsp?id=<%= artwork.getId() %>" class="btn btn-view">Ver</a>
+                            <%
+                                if (role.equals("admin")) {
+                            %>
                             <a href="edit-artwork.jsp?id=<%= artwork.getId() %>" class="btn btn-edit">Modificar</a>
                             <a href="javascript:void(0);" class="btn btn-delete"
                                onclick="eliminarArtwork(<%= artwork.getId()%>)">Eliminar</a>
+                            <%
+                                }
+                            %>
                         </div>
                     </div>
                 </div>

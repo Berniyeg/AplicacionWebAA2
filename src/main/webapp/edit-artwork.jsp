@@ -7,6 +7,10 @@
 <%@include file="includes/edit-ajax.jsp"%>
 
 <%
+    if (!role.equals("admin")) {
+        response.sendRedirect("/ArtMarket");
+    }
+
     int id;
     Artwork artwork = null;
     if (request.getParameter("id") == null) {
