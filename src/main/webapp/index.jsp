@@ -6,13 +6,13 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%@include file="includes/header-style.jsp"%>
-
 <!-- Cabecera -->
 <header class="header">
     <div class="container">
         <h1 class="display-4">Bienvenido al Mercado de Arte</h1>
         <p class="lead">Descubre y compra obras de arte únicas de artistas talentosos.</p>
     </div>
+
     <div class="nav-item">
         <%
             if (role.equals("admin")) {
@@ -22,6 +22,16 @@
             }
         %>
     </div>
+        <br>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar obras" aria-label="Buscar">
+                <button class="btn btn-light my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </li>
+    </ul>
+
 </header>
 
 <main role="main" class="container">
