@@ -2,9 +2,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - Mercado de Arte</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -38,6 +36,7 @@
         .navbar-nav .nav-item .nav-link, .navbar-nav .nav-item .nav-link {
             color: #f8f9fa; /* Color de texto amarillo al pasar el cursor */
         }
+
         .highlight {
             background-color: #435bf4; /* Fondo amarillo para resaltar */
             color: black; /* Color del texto */
@@ -79,8 +78,14 @@
 <%
     HttpSession currentSession = request.getSession();
     String role = "anonymous";
+    String username = "";
+
     if (currentSession.getAttribute("role") != null) {
         role = currentSession.getAttribute("role").toString();
+    }
+
+    if (currentSession.getAttribute("username") != null) {
+        username = currentSession.getAttribute("username").toString();
     }
 %>
 
@@ -92,28 +97,22 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-
-            <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar obras" aria-label="Buscar">
-                    <button class="btn btn-light my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
-            </li>
-        </ul>
         <ul class="navbar-nav ml-auto">
             <%
                 if (role.equals("anonymous")) {
             %>
             <li class="nav-item">
-                <a class="nav-link" href="#" title="Registrar Usuario"><i class="fas fa-user-plus"></i> Registrar</a>
+                <a class="nav-link" href="register-user.jsp" title="Registrar Usuario"><i class="fas fa-user-plus"></i> Registrar</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="login.jsp" title="Acceder al Perfil"><i class="fas fa-user"></i> Perfil</a>
             </li>
             <%
-                } else {
+            } else {
             %>
+            <li class="nav-item">
+                Welcome, <%= username %>!
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="logout" title="Cerrar Sesión"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
             </li>
@@ -123,6 +122,5 @@
         </ul>
     </div>
 </nav>
-
 </body>
 

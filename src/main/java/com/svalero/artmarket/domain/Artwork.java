@@ -15,4 +15,5 @@ public class Artwork {
     private String description;
     private float price;
     private String picture;
+
 }

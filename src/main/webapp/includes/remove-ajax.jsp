@@ -1,7 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8"%>
 
-<!-- Código JavaScript para manejar la eliminación con AJAX -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     function eliminarArtwork(id) {
@@ -13,7 +12,7 @@
                 success: function(response) {
                     if (response.status === 'success') {
                         alert(response.message);
-                        // Eliminar la fila o elemento HTML correspondiente
+                        
                         $('#artwork-' + id).remove();
                     } else {
                         alert("Error: " + response.message);
