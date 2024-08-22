@@ -3,17 +3,17 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    function eliminarArtwork(id) {
+    function eliminarSculpture(id) {
         if (confirm("Are you sure you want to delete this artwork?")) {
             $.ajax({
-                url: 'remove-artwork',
+                url: 'remove-sculpture',
                 type: 'GET',
                 data: { id: id },
                 success: function(response) {
                     if (response.status === 'success') {
                         alert(response.message);
-                        
-                        $('#artwork-' + id).remove();
+
+                        $('#sculpture-' + id).remove();
                     } else {
                         alert("Error: " + response.message);
                     }

@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Artwork {
+public class Sculpture {
     private int id;
     private String title;
     private String description;
     private float price;
     private String picture;
+    private String material;
 }

@@ -4,8 +4,14 @@
 
     <context-param>
         <description>Ruta donde guardar las imagenes</description>
-        <param-name>image-path</param-name>
-        <param-value>/Users/bslan/Desktop/apache-tomcat-9.0.89/webapps/artmarket_pictures</param-value>
+        <param-name>image-artwork-path</param-name>
+        <param-value>/Users/bslan/Desktop/apache-tomcat-9.0.89/webapps/artmarket_pictures/artwork</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Ruta donde guardar las imagenes</description>
+        <param-name>image-sculpture-path</param-name>
+        <param-value>/Users/bslan/Desktop/apache-tomcat-9.0.89/webapps/artmarket_pictures/sculpture</param-value>
     </context-param>
 </web-app>
 

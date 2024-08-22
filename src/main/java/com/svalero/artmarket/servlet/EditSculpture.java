@@ -1,7 +1,7 @@
 package com.svalero.artmarket.servlet;
 
-import com.svalero.artmarket.dao.ArtworkDao;
 import com.svalero.artmarket.dao.Database;
+import com.svalero.artmarket.dao.SculptureDao;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +20,8 @@ import java.util.UUID;
 import static com.svalero.artmarket.util.ErrorUtil.*;
 
 @MultipartConfig
-@WebServlet("/edit-artwork")
-public class EditArtwork extends HttpServlet {
+@WebServlet("/edit-sculpture")
+public class EditSculpture extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,31 +33,32 @@ public class EditArtwork extends HttpServlet {
             String description = request.getParameter("description");
             float price = Float.parseFloat(request.getParameter("price"));
             Part picturePart = request.getPart("picture");
+            String material = request.getParameter("material");
 
-            String imagePath = request.getServletContext().getInitParameter("image-artwork-path");
-            String filename = handleFileUpload(picturePart, imagePath);
+            String imageSculpturePath = request.getServletContext().getInitParameter("image-sculpture-path");
+            String filename = handleFileUpload(picturePart, imageSculpturePath);
 
             Database.connect();
-            int existingArtworkCount = Database.jdbi.withExtension(ArtworkDao.class,
-                    dao -> dao.countArtworkByTitle(title));
+            int existingSculptureCount = Database.jdbi.withExtension(SculptureDao.class,
+                    dao -> dao.countSculptureByTitle(title));
 
-            if (existingArtworkCount > 0 && id == 0) {
-                sendWarning("La obra de arte con ese título ya existe.", response);
+            if (existingSculptureCount > 0 && id == 0) {
+                sendWarning("La escultura con ese título ya existe.", response);
                 return;
             }
 
             int affectedRows;
             if (id == 0) {
-                affectedRows = Database.jdbi.withExtension(ArtworkDao.class,
-                        dao -> dao.addArtwork(title, description, price, filename));
+                affectedRows = Database.jdbi.withExtension(SculptureDao.class,
+                        dao -> dao.addSculpture(title, description, price, filename, material));
                 if (affectedRows > 0) {
-                    sendMessage("Obra de arte subida correctamente.", response);
+                    sendMessage("Escultura subida correctamente.", response);
                 } else {
                     sendError("Error al subir la obra de arte.", response);
                 }
             } else {
-                affectedRows = Database.jdbi.withExtension(ArtworkDao.class,
-                        dao -> dao.updateArtwork(title, description, price, filename, id));
+                affectedRows = Database.jdbi.withExtension(SculptureDao.class,
+                        dao -> dao.updateSculpture(title, description, price, filename, material, id));
                 if (affectedRows > 0) {
                     sendMessage("Obra de arte modificada correctamente.", response);
                 } else {
