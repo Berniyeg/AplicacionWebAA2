@@ -1,13 +1,13 @@
 <%@ page import="com.svalero.artmarket.dao.Database" %>
-<%@ page import="com.svalero.artmarket.domain.Artwork" %>
-<%@ page import="com.svalero.artmarket.dao.ArtworkDao" %>
 <%@ page import="com.svalero.artmarket.util.CurrencyUtils" %>
+<%@ page import="com.svalero.artmarket.domain.Sculpture" %>
+<%@ page import="com.svalero.artmarket.dao.SculptureDao" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de la Obra de Arte</title>
+    <title>Detail of the sculpture</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -51,7 +51,7 @@
 
 <body>
 <div class="container">
-    <h1 class="page-title">Detalle de la Obra de Arte</h1>
+    <h1 class="page-title"Detail of the sculpture</h1>
 </div>
     <%
     // Validar el parámetro "id"
@@ -61,25 +61,23 @@
             int id = Integer.parseInt(idParam);
 
             Database.connect();
-            Artwork artwork = Database.jdbi.withExtension(ArtworkDao.class, dao -> dao.getArtwork(id));
-            if (artwork != null) {
+            Sculpture sculpture = Database.jdbi.withExtension(SculptureDao.class, dao -> dao.getSculpture(id));
+            if (sculpture != null) {
     %>
 <div class="container">
     <div class="card">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="../artmarket_pictures/artwork<%= artwork.getPicture() %>" class="card-img" alt="Obra de Arte Detalle">
+                <img src="../artmarket_pictures/scupture<%= sculpture.getPicture() %>" class="card-img" alt="Obra de Arte Detalle">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title"><%= artwork.getTitle() %>
-                    </h5>
-                    <p class="card-text"><%= artwork.getDescription() %>
-                    </p>
+                    <h5 class="card-title"><%= sculpture.getTitle() %></h5>
+                    <p class="card-text"><%= sculpture.getDescription() %></p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Precio:</strong> <%= CurrencyUtils.format(artwork.getPrice()) %>
-                        </li>
+                        <li class="list-group-item"><strong>Precio:</strong> <%= CurrencyUtils.format(sculpture.getPrice()) %></li>
                     </ul>
+                    <p class="card-text"><%= sculpture.getMaterial() %></p>
                     <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
                 </div>
             </div>

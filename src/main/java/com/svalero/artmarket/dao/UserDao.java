@@ -1,5 +1,6 @@
 package com.svalero.artmarket.dao;
 
+import com.svalero.artmarket.domain.Artwork;
 import com.svalero.artmarket.domain.User;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
@@ -26,6 +27,7 @@ public interface UserDao {
 
     @SqlQuery("SELECT COUNT(*) FROM users WHERE username = ?")
     int countUserByUsername(String username);
+
 
     @SqlUpdate("UPDATE users SET username = ?, name = ?, email = ?, phone = ?, role = ? WHERE id = ?")
     int updateUser(String username, String name, String phone, String email, String role);

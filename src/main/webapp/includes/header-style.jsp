@@ -72,6 +72,12 @@
         .navbar-nav .nav-item {
             margin-left: 10px; /* Espaciado entre los ítems de navegación */
         }
+        .nav-link-saludo {
+            margin-right: 10px;
+            color: #f8f9fa; /* Color del saludo */
+            font-size: 1.1rem;
+        }
+
     </style>
 </head>
 
@@ -111,7 +117,10 @@
             } else {
             %>
             <li class="nav-item">
-                Welcome, <%= username %>!
+                <span class="nav-link nav-link-saludo">Bienvenido, <%= username %>!</span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../profile.jsp" title="Acceder al Perfil"><i class="fas fa-user"></i> Perfil</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="logout" title="Cerrar Sesión"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
