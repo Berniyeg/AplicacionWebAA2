@@ -14,7 +14,6 @@
         <h1 class="display-4">Bienvenido al Mercado de Arte</h1>
         <p class="lead">Descubre y compra obras de arte únicas de artistas talentosos.</p>
     </div>
-
     <div class="d-flex justify-content-center">
         <div class="nav-item d-flex">
             <%
@@ -27,16 +26,13 @@
             %>
         </div>
     </div>
-
-
     <br>
     <div class="d-flex justify-content-center">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+        <form class="form-inline my-2 my-lg-0" action="search.jsp" method="get">
+            <input class="form-control mr-sm-2" type="search" name="query" placeholder="Buscar" aria-label="Buscar">
             <button class="btn btn-light my-2 my-sm-0" type="submit">Buscar</button>
         </form>
     </div>
-
 </header>
 
 <main role="main" class="container">
@@ -92,11 +88,11 @@
                             <p class="card-text"><%= sculpture.getDescription() %></p>
                             <p class="card-text"><%= sculpture.getMaterial() %></p>
                             <p class="card-price">Price: <%= CurrencyUtils.format(sculpture.getPrice()) %></p>
-                            <a href="view-sculpture.jsp" class="btn btn-view">Ver</a>
+                            <a href="view-sculpture.jsp?id=<%= sculpture.getId() %>" class="btn btn-view">Ver</a>
                             <%
                                 if (role.equals("admin")) {
                             %>
-                            <a href="edit-sculpture.jsp" class="btn btn-edit">Modificar</a>
+                            <a href="edit-sculpture.jsp?id=<%= sculpture.getId() %>" class="btn btn-edit">Modificar</a>
                             <a href="javascript:void(0);" class="btn btn-delete"
                                onclick="eliminarSculpture(<%= sculpture.getId()%>)">Eliminar</a>
                             <%
@@ -113,7 +109,7 @@
     </div>
 </main>
 
-
+<%@include file="includes/remove-sculpture-ajax.jsp"%>
 <%@include file="includes/remove-artwork-ajax.jsp"%>
 
  <%@include file="includes/footer.jsp"%>

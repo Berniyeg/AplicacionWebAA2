@@ -1,10 +1,10 @@
 
 <%@ page contentType="text/html;charset=UTF-8"%>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
     function eliminarSculpture(id) {
-        if (confirm("Are you sure you want to delete this artwork?")) {
+        if (confirm("Are you sure you want to delete this sculpture?")) {
             $.ajax({
                 url: 'remove-sculpture',
                 type: 'GET',
@@ -19,7 +19,7 @@
                     }
                 },
                 error: function() {
-                    alert("An error occurred while trying to delete the artwork.");
+                    alert("An error occurred while trying to delete the sculpture.");
                 }
             });
         }

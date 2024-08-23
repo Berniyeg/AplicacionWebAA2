@@ -1,8 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%@include file="includes/header-style.jsp"%>
-<%@include file="includes/register-user-ajax.jsp"%>
-
 
 
 <body>
@@ -58,5 +56,5 @@
 </div>
 </body>
 
-
+<%@include file="includes/register-user-ajax.jsp"%>
 <%@include file="includes/footer.jsp"%>

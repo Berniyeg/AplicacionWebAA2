@@ -23,14 +23,14 @@ public interface UserDao {
     User getUser(String username, String password);
 
     @SqlUpdate("INSERT INTO users (username, password, name, email, phone, role) VALUES (?, ?, ?, ?, ?, ?)")
-    int addUser(String username, String password, String name, String phone, String email, String role);
+    int addUser(String username, String password, String name, String email, String phone, String role);
 
     @SqlQuery("SELECT COUNT(*) FROM users WHERE username = ?")
     int countUserByUsername(String username);
 
 
     @SqlUpdate("UPDATE users SET username = ?, name = ?, email = ?, phone = ?, role = ? WHERE id = ?")
-    int updateUser(String username, String name, String phone, String email, String role);
+    int updateUser(String username, String name, String email, String phone, String role);
 
     @SqlUpdate("DELETE FROM users WHERE id = ?")
     int removeUser(int id);
