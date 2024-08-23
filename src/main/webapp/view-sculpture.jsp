@@ -51,7 +51,7 @@
 
 <body>
 <div class="container">
-    <h1 class="page-title"Detail of the sculpture</h1>
+    <h1>Detail of the sculpture</h1>
 </div>
     <%
     // Validar el parámetro "id"
@@ -68,7 +68,7 @@
     <div class="card">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="../artmarket_pictures/scupture<%= sculpture.getPicture() %>" class="card-img" alt="Obra de Arte Detalle">
+                <img src="../artmarket_pictures/sculpture/<%= sculpture.getPicture() %>" class="card-img" alt="Obra de Arte Detalle">
             </div>
             <div class="col-md-8">
                 <div class="card-body">

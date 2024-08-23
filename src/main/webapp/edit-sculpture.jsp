@@ -63,7 +63,7 @@
 
         <!-- Material -->
         <div class="form-group">
-            <label for="material">Title</label>
+            <label for="material">Material</label>
             <input type="text" class="form-control" id="material" name="material" placeholder="Sculpture material"
                 <% if (id != 0) { %> value="<%= sculpture.getMaterial() %>"<% } %> required maxlength="100">
         </div>

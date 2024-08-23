@@ -1,7 +1,6 @@
 package com.svalero.artmarket.servlet;
 import com.svalero.artmarket.dao.Database;
 import com.svalero.artmarket.dao.UserDao;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -46,7 +45,7 @@ public class RegisterUser extends HttpServlet {
 
             // Insertar el nuevo usuario
             int affectedRows = Database.jdbi.withExtension(UserDao.class,
-                    dao -> dao.addUser(username, password, name, phone, email, role));
+                    dao -> dao.addUser(username, password, name, email, phone, role));
 
             // Verificar si la inserción fue exitosa
             if (affectedRows > 0) {
