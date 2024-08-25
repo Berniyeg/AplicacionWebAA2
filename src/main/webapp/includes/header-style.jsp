@@ -71,6 +71,42 @@
             font-weight: bold;
         }
 
+        /* Estilos para las pestañas */
+        .tab {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Botones de pestañas */
+        .tab button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+            margin: 0 5px;
+        }
+
+        /* Botones de pestañas activos */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Contenido de las pestañas */
+        .tabcontent {
+            display: none;
+        }
+
+        /* Mostrar contenido activo */
+        .tabcontent.active {
+            display: block;
+        }
+
+
         /* Secciones */
         .artwork, .sculpture {
             margin: 30px 0; /* Margen más amplio */
@@ -96,6 +132,9 @@
 
         .card-body {
             padding: 20px;
+            display: flex;
+            flex-direction: column; /* Disposición en columna para alinear elementos */
+            align-items: center; /* Alinea horizontalmente al centro */
         }
 
         .card-title {
@@ -110,11 +149,12 @@
 
         .card-price {
             font-weight: bold;
+            margin-bottom: 15px; /* Espacio debajo del precio */
         }
 
         /* Botones */
         .btn {
-            margin-right: 5px; /* Espaciado entre botones */
+            margin: 5px 0; /* Espaciado vertical entre botones */
             border-radius: 20px; /* Bordes redondeados */
             padding: 10px 20px; /* Tamaño de botones */
             font-weight: bold;
@@ -152,6 +192,15 @@
         .btn-view:hover {
             background-color: #218838; /* Verde más oscuro al pasar el cursor */
         }
+
+        /* Contenedor de botones */
+        .btn-container {
+            display: flex;
+            justify-content: center; /* Centra los botones horizontalmente */
+            gap: 10px; /* Espaciado entre botones */
+            flex-wrap: wrap; /* Permite que los botones se envuelvan si es necesario */
+        }
+
 
     </style>
 </head>
