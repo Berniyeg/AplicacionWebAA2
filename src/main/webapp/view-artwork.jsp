@@ -72,13 +72,10 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title"><%= artwork.getTitle() %>
-                    </h5>
-                    <p class="card-text"><%= artwork.getDescription() %>
-                    </p>
+                    <h3 class="card-title"><strong><%= artwork.getTitle() %></strong></h3>
+                    <p class="card-text"><%= artwork.getDescription() %></p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Precio:</strong> <%= CurrencyUtils.format(artwork.getPrice()) %>
-                        </li>
+                        <li class="list-group-item">Precio: <%= CurrencyUtils.format(artwork.getPrice()) %></li>
                     </ul>
                     <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
                 </div>

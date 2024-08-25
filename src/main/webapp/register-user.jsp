@@ -35,6 +35,7 @@
             <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Address" required maxlength="255">
         </div>
 
+        <% if (role.equals("admin")) { %>
         <div class="form-group">
             <label for="role">Role</label>
             <select class="form-control" id="role" name="role" required>
@@ -43,6 +44,7 @@
                 <option value="admin">Admin</option>
             </select>
         </div>
+        <% } %>
 
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary" id="submit-button">
