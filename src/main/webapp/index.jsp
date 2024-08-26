@@ -9,6 +9,13 @@
 
 <%@include file="includes/header-style.jsp"%>
 
+<script>
+    $(document).ready(function () {
+        $("#search-input").focus();
+    });
+</script>
+
+
 <header class="header">
     <div class="container">
         <h1 class="display-4">Bienvenido al Mercado de Arte</h1>
@@ -24,9 +31,9 @@
     </div>
     <br>
     <div class="d-flex justify-content-center">
-        <form class="form-inline my-2 my-lg-0" action="search.jsp" method="get">
-            <input class="form-control mr-sm-2" type="search" name="query" placeholder="Buscar" aria-label="Buscar">
-            <button class="btn btn-light my-2 my-sm-0" type="submit">Buscar</button>
+        <form class="form-inline my-2 my-lg-0" >
+            <input class="form-control mr-sm-2" type="text" name="search" id="search-input" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-light my-2 my-sm-0" type="submit" id="search-button">Buscar</button>
         </form>
     </div>
 </header>
@@ -44,8 +51,19 @@
             <div class="container">
                 <div class="row">
                     <%
+                        String search = "";
+                        if (request.getParameter("search") != null)
+                            search = request.getParameter("search");
+
                         Database.connect();
-                        List<Artwork> artworks = Database.jdbi.withExtension(ArtworkDao.class, dao -> dao.getAllArtworks());
+                        List<Artwork> artworks = null;
+                        if (search.isEmpty()) {
+                            artworks = Database.jdbi.withExtension(ArtworkDao.class, dao -> dao.getAllArtworks());
+                        } else {
+                            final String searchTerm = search;
+                            artworks = Database.jdbi.withExtension(ArtworkDao.class, dao -> dao.searchArtworks(searchTerm));
+                        }
+
                         for (Artwork artwork : artworks) {
                     %>
                     <div class="col-md-4" id="artwork-<%= artwork.getId() %>">
@@ -75,9 +93,21 @@
             <div class="container">
                 <div class="row">
                     <%
-                        List<Sculpture> sculptures = Database.jdbi.withExtension(SculptureDao.class, dao -> dao.getAllSculptures());
+                        String searchSculpture = "";
+                        if (request.getParameter("search") != null)
+                            searchSculpture = request.getParameter("search");
+
+                        Database.connect();
+                        List<Sculpture> sculptures = null;
+                        if (searchSculpture.isEmpty()) {
+                            sculptures = Database.jdbi.withExtension(SculptureDao.class, dao -> dao.getAllSculptures());
+                        } else {
+                            final String searchTermSculpture = search;
+                            sculptures = Database.jdbi.withExtension(SculptureDao.class, dao -> dao.searchSculptures(searchTermSculpture));
+                        }
                         for (Sculpture sculpture : sculptures) {
                     %>
+
                     <div class="col-md-4" id="sculpture-<%= sculpture.getId() %>">
                         <div class="card">
                             <img src="../artmarket_pictures/sculpture/<%= sculpture.getPicture() %>" class="card-img-top" alt="Escultura">
@@ -100,6 +130,7 @@
         </div>
     </div>
 </main>
+
 
 <%@include file="includes/script-tab.jsp"%>
 <%@include file="includes/remove-sculpture-ajax.jsp"%>

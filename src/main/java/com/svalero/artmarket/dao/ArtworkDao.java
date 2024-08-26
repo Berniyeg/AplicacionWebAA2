@@ -1,6 +1,7 @@
 package com.svalero.artmarket.dao;
 
 import com.svalero.artmarket.domain.Artwork;
+import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.UseRowMapper;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
@@ -17,6 +18,10 @@ public interface ArtworkDao {
     @SqlQuery("SELECT * FROM artworks WHERE id = ?")
     @UseRowMapper(ArtworkMapper.class)
     Artwork getArtwork(int id);
+
+    @SqlQuery("SELECT * FROM artworks WHERE title LIKE '%' || :searchTerm || '%' OR description LIKE '%' || :searchTerm || '%'")
+    @UseRowMapper(ArtworkMapper.class)
+    List<Artwork> searchArtworks(@Bind("searchTerm") String searchTerm);
 
     @SqlUpdate("INSERT INTO artworks (title, description, price, picture) VALUES (?, ?, ?, ?)")
     int addArtwork(String title, String description, float price, String picture);

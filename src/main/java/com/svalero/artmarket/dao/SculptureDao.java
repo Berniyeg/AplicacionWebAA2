@@ -1,5 +1,7 @@
 package com.svalero.artmarket.dao;
+import com.svalero.artmarket.domain.Artwork;
 import com.svalero.artmarket.domain.Sculpture;
+import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import org.jdbi.v3.sqlobject.statement.UseRowMapper;
@@ -15,6 +17,10 @@ public interface SculptureDao {
     @SqlQuery("SELECT * FROM sculptures WHERE id = ?")
     @UseRowMapper(SculptureMapper.class)
     Sculpture getSculpture(int id);
+
+    @SqlQuery("SELECT * FROM sculptures WHERE title LIKE '%' || :query || '%' OR description LIKE '%' || :query || '%'")
+    @UseRowMapper(SculptureMapper.class)
+    List<Sculpture> searchSculptures(@Bind("query") String query);
 
     @SqlUpdate("INSERT INTO sculptures (title, description, price, picture, material) VALUES (?, ?, ?, ?, ?)")
     int addSculpture(String title, String description, float price, String picture, String material);
