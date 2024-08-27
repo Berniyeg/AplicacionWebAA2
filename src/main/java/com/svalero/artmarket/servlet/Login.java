@@ -38,14 +38,14 @@ public class Login extends HttpServlet {
                 response.getWriter().print("ok");
 
             } else {
-                sendError("El usuario no existe", response); // Indica credenciales inválidas
+                sendError("the username or password is not correct", response);
             }
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();
-            response.getWriter().print("error"); // Enviar error general
+            response.getWriter().print("error");
         } catch (SQLException sqle) {
             sqle.printStackTrace();
-            response.getWriter().print("error"); // Enviar error general
+            response.getWriter().print("error");
         }
     }
 }

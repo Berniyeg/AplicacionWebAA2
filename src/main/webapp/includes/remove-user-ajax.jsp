@@ -2,23 +2,23 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    function eliminarArtwork(id) {
-        if (confirm("Are you sure you want to delete this artwork?")) {
+    function eliminarUser(id) {
+        if (confirm("Are you sure you want to delete this user?")) {
             $.ajax({
-                url: 'remove-artwork',
+                url: 'remove-user',
                 type: 'GET',
                 data: { id: id },
                 success: function(response) {
                     if (response.status === 'success') {
                         alert(response.message);
 
-                        $('#artwork-' + id).remove();
+                        $('#user-' + id).remove();
                     } else {
                         alert("Error: " + response.message);
                     }
                 },
                 error: function() {
-                    alert("An error occurred while trying to delete the artwork.");
+                    alert("An error occurred while trying to delete the user.");
                 }
             });
         }

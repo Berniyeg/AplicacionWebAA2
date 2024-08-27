@@ -61,6 +61,6 @@
         </div>
     </div>
 </div>
-<%@include file="includes/login-ajax.jsp"%>
 </body>
 
+<%@include file="includes/login-ajax.jsp"%>

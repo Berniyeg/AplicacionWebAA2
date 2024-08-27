@@ -18,9 +18,9 @@ public interface SculptureDao {
     @UseRowMapper(SculptureMapper.class)
     Sculpture getSculpture(int id);
 
-    @SqlQuery("SELECT * FROM sculptures WHERE title LIKE '%' || :query || '%' OR description LIKE '%' || :query || '%'")
+    @SqlQuery("SELECT * FROM sculptures WHERE title LIKE '%' || :searchTermSculpture || '%' OR description LIKE '%' || :searchTermSculpture || '%'")
     @UseRowMapper(SculptureMapper.class)
-    List<Sculpture> searchSculptures(@Bind("query") String query);
+    List<Sculpture> searchSculptures(@Bind("searchTermSculpture") String searchTermSculpture);
 
     @SqlUpdate("INSERT INTO sculptures (title, description, price, picture, material) VALUES (?, ?, ?, ?, ?)")
     int addSculpture(String title, String description, float price, String picture, String material);
