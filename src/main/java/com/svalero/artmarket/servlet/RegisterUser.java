@@ -1,4 +1,5 @@
 package com.svalero.artmarket.servlet;
+
 import com.svalero.artmarket.dao.Database;
 import com.svalero.artmarket.dao.UserDao;
 import javax.servlet.ServletException;
@@ -14,7 +15,6 @@ import static com.svalero.artmarket.util.ErrorUtil.*;
 
 @MultipartConfig
 @WebServlet("/register-user")
-
 public class RegisterUser extends HttpServlet {
 
     @Override
@@ -22,36 +22,51 @@ public class RegisterUser extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String phone = request.getParameter("phone");
-        String email = request.getParameter("email");
-        String role = request.getParameter("role");
-
         try {
-            // Conectar a la base de datos
-            Database.connect();
+            // Obtener parámetros del formulario
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String name = request.getParameter("name");
+            String phone = request.getParameter("phone");
+            String email = request.getParameter("email");
+            String role = request.getParameter("role");
 
-            // Verificar si el nombre de usuario ya existe
+            if (role == null || role.isEmpty()) {
+                role = "user";
+            }
+
+            String idUser = request.getParameter("id");
+            int id = (idUser != null && !idUser.isEmpty()) ? Integer.parseInt(idUser) : 0;
+
+            Database.connect();
             int existingUserCount = Database.jdbi.withExtension(UserDao.class,
                     dao -> dao.countUserByUsername(username));
 
-            // Si el usuario ya existe, mostrar un mensaje y terminar
-            if (existingUserCount > 0) {
-                sendWarning("El nombre de usuario ya existe.", response);
+            if (existingUserCount > 0 && id == 0) {
+                sendWarning("El usuario con ese nombre ya existe.", response);
                 return;
             }
 
-            // Insertar el nuevo usuario
-            int affectedRows = Database.jdbi.withExtension(UserDao.class,
-                    dao -> dao.addUser(username, password, name, email, phone, role));
-
-            // Verificar si la inserción fue exitosa
-            if (affectedRows > 0) {
-                sendMessage("Usuario registrado correctamente.", response);
+            int affectedRows;
+            if (id == 0) {
+                // Crear nuevo usuario
+                String finalRole = role;
+                affectedRows = Database.jdbi.withExtension(UserDao.class,
+                        dao -> dao.addUser(username, password, name, phone, email, finalRole));
+                if (affectedRows > 0) {
+                    sendMessage("Usuario registrado correctamente.", response);
+                } else {
+                    sendError("Error al registrar el usuario.", response);
+                }
             } else {
-                sendError("Error al registrar el usuario.", response);
+                // Actualizar usuario existente
+                affectedRows = Database.jdbi.withExtension(UserDao.class,
+                        dao -> dao.updateUser(name, phone, id));
+                if (affectedRows > 0) {
+                    sendMessage("Usuario modificado correctamente.", response);
+                } else {
+                    sendError("Error al modificar el usuario.", response);
+                }
             }
 
         } catch (ClassNotFoundException cnfe) {
@@ -60,7 +75,9 @@ public class RegisterUser extends HttpServlet {
         } catch (SQLException sqle) {
             sqle.printStackTrace();
             sendError("Error conectando con la base de datos", response);
+        } catch (NumberFormatException nfe) {
+            nfe.printStackTrace();
+            sendError("Formato de ID no válido", response);
         }
     }
 }
-

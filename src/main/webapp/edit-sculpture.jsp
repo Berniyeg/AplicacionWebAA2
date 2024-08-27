@@ -1,7 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.svalero.artmarket.dao.Database" %>
 <%@ page import="com.svalero.artmarket.domain.Sculpture" %>
 <%@ page import="com.svalero.artmarket.dao.SculptureDao" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
 
 <%@include file="includes/header-style.jsp"%>
 <%@include file="includes/edit-sculpture-ajax.jsp"%>

@@ -1,8 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.svalero.artmarket.dao.Database" %>
 <%@ page import="com.svalero.artmarket.util.CurrencyUtils" %>
 <%@ page import="com.svalero.artmarket.domain.Sculpture" %>
 <%@ page import="com.svalero.artmarket.dao.SculptureDao" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
+
 
 <head>
     <meta charset="UTF-8">

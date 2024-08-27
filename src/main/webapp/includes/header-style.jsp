@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Mercado de Arte</title>
+    <title>Home - Art Market</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -222,7 +222,7 @@
 <body>
 <!-- Navegación -->
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand" href="/ArtMarket/">Mercado de Arte</a>
+    <a class="navbar-brand" href="/ArtMarket/">Art Market</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -233,25 +233,24 @@
                 if (role.equals("anonymous")) {
             %>
             <li class="nav-item">
-                <a class="nav-link" href="register-user.jsp" title="Registrar Usuario"><i class="fas fa-user-plus"></i>
-                    Registrar</a>
+                <a class="nav-link" href="register-user.jsp" title="Register new user"><i class="fas fa-user-plus"></i>
+                    Sign up</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="login.jsp" title="Acceder al Perfil"><i class="fas fa-user"></i> Perfil</a>
+                <a class="nav-link" href="login.jsp" title="Access profile"><i class="fas fa-user"></i> Login</a>
             </li>
             <%
             } else {
             %>
             <li class="nav-item">
-                <span class="nav-link nav-link-saludo">Bienvenido, <%= username %>!</span>
+                <span class="nav-link nav-link-saludo">Welcome, <%= username %>!</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../profile.jsp" title="Acceder al Perfil"><i class="fas fa-user"></i>
-                    Perfil</a>
+                <a class="nav-link" href="../profile.jsp" title="Profile"><i class="fas fa-user"></i>
+                    Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="logout" title="Cerrar Sesión"><i class="fas fa-sign-out-alt"></i> Cerrar
-                    Sesión</a>
+                <a class="nav-link" href="logout" title="Logout"><i class="fas fa-sign-out-alt"></i> Logout </a>
             </li>
             <%
                 }
