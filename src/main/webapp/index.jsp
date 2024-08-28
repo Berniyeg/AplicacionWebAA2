@@ -23,12 +23,28 @@
     </div>
     <div class="d-flex justify-content-center">
         <div class="nav-item d-flex">
-            <% if (role.equals("admin")) { %>
-            <a class="nav-link highlight" href="edit-artwork.jsp">Upload Work</a>
+            <%
+                if (role.equals("admin")) {
+            %>
+            <a class="nav-link highlight" href="edit-artwork.jsp">Upload Artwork</a>
             <a class="nav-link highlight ml-3" href="edit-sculpture.jsp">Upload Sculpture</a>
             <a class="nav-link highlight ml-3" href="register-user.jsp">Create User</a>
-            <% } %>
+            <%
+            } else if (role.equals("user")) {
+            %>
+            <a class="nav-link highlight" href="edit-artwork.jsp">Upload Artwork</a>
+            <a class="nav-link highlight ml-3" href="edit-sculpture.jsp">Upload Sculpture</a>
+            <%
+            } else if (role.equals("anonymous")) {
+            %>
+            <a class="nav-link highlight" href="register-user.jsp">Upload Artwork</a>
+            <a class="nav-link highlight ml-3" href="register-user.jsp">Upload Sculpture</a>
+            <%
+                }
+            %>
         </div>
+
+
     </div>
     <br>
     <div class="d-flex justify-content-center">
