@@ -6,7 +6,6 @@
 <%@ page import="com.svalero.artmarket.domain.User" %>
 <%@ page import="com.svalero.artmarket.dao.*" %>
 
-
 <%@include file="includes/header-style.jsp" %>
 
 <script>
@@ -194,7 +193,7 @@
                                     <span class="me-3"><strong>Email: </strong> <%= user.getEmail() %></span>
                                     <span class="me-3"><strong>Rol: </strong> <%= user.getRole() %></span>
                                     <div class="user-actions">
-                                        <a href="view-artwork.jsp?id=<%= user.getId() %>" class="btn btn-secondary btn-sm me-2">View</a>
+                                        <a href="profile.jsp?id=<%= user.getId() %>" class="btn btn-secondary btn-sm me-2">View</a>
                                         <a href="register-user.jsp?id=<%= user.getId() %>" class="btn btn-secondary btn-sm me-2">Modify</a>
                                         <a href="javascript:void(0);" class="btn btn-delete" onclick="eliminarUser(<%= user.getId() %>)">Delete</a>
                                     </div>

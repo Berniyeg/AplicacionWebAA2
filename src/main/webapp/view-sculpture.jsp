@@ -56,10 +56,10 @@
 </div>
     <%
     // Validar el parámetro "id"
-    String idParam = request.getParameter("id");
-    if (idParam != null && !idParam.isEmpty()) {
+    String idViewSculpture = request.getParameter("id");
+    if (idViewSculpture != null && !idViewSculpture.isEmpty()) {
         try {
-            int id = Integer.parseInt(idParam);
+            int id = Integer.parseInt(idViewSculpture);
 
             Database.connect();
             Sculpture sculpture = Database.jdbi.withExtension(SculptureDao.class, dao -> dao.getSculpture(id));

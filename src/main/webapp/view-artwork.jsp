@@ -56,10 +56,10 @@
 </div>
     <%
     // Validar el parámetro "id"
-    String idParam = request.getParameter("id");
-    if (idParam != null && !idParam.isEmpty()) {
+    String idViewArtwork = request.getParameter("id");
+    if (idViewArtwork != null && !idViewArtwork.isEmpty()) {
         try {
-            int id = Integer.parseInt(idParam);
+            int id = Integer.parseInt(idViewArtwork);
 
             Database.connect();
             Artwork artwork = Database.jdbi.withExtension(ArtworkDao.class, dao -> dao.getArtwork(id));
