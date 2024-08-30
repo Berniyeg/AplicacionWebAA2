@@ -78,7 +78,11 @@
 
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary" id="submit-button">
+            <% if (id == 0) { %>
             Submit
+            <% } else { %>
+            Modify
+            <% } %>
         </button>
         <input type="hidden" name="id" value="<%= id %>"/>
     </form>

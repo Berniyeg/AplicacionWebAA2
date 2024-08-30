@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Art Market</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -246,7 +247,7 @@
                 <span class="nav-link nav-link-saludo">Welcome, <%= username %>!</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../profile.jsp" title="Profile"><i class="fas fa-user"></i>
+                <a class="nav-link" href="profile.jsp?id=2" title="Profile"><i class="fas fa-user"></i>
                     Profile</a>
             </li>
             <li class="nav-item">

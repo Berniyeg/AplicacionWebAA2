@@ -7,8 +7,9 @@
 <%@include file="includes/edit-artwork-ajax.jsp"%>
 
 <%
-    if (!role.equals("admin")) {
+    if (!role.equals("admin") && !role.equals("user")) {
         response.sendRedirect("/ArtMarket");
+        return;
     }
 
     int id;
