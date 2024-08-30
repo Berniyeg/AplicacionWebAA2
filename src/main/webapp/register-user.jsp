@@ -10,10 +10,8 @@
     int id;
     User user = null;
     if (request.getParameter("id") == null) {
-        // Se accede al formulario para crear una nueva actividad
         id = 0;
     } else {
-        // Se accede al formulario para editar una actividad existente
         id = Integer.parseInt(request.getParameter("id"));
         Database.connect();
         user = Database.jdbi.withExtension(UserDao.class, dao -> dao.getUser(id));
