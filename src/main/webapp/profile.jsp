@@ -62,6 +62,13 @@
     </style>
 </head>
 <%
+    HttpSession currentSession = request.getSession();
+    String role = "";
+
+    if (currentSession.getAttribute("role") != null) {
+        role = currentSession.getAttribute("role").toString();
+    }
+
     String idProfile = request.getParameter("id");
     if (idProfile != null && !idProfile.isEmpty()) {
         try {
@@ -79,19 +86,25 @@
             <div class="card profile-card">
                 <div class="card-body">
                     <h5 class="card-title text-center">Perfil de Usuario</h5>
-                    <p class="card-text"><strong>User:   </strong> <%= user.getUsername() %> </p>
+                    <p class="card-text"><strong>User: </strong> <%= user.getUsername() %></p>
                     <p class="card-text">
-                        <strong>Name:   </strong> <%= user.getName() %>
+                        <strong>Name: </strong> <%= user.getName() %>
                     </p>
                     <p class="card-text">
-                        <strong>Phone:   </strong> <%= user.getPhone() %>
+                        <strong>Phone: </strong> <%= user.getPhone() %>
                     </p>
                     <p class="card-text">
-                        <strong>Email:   </strong> <%= user.getEmail() %>
+                        <strong>Email: </strong> <%= user.getEmail() %>
                     </p>
                     <div class="btn-group-center">
+                        <%
+                            if (!role.equals("admin")) {
+                        %>
                         <a href="register-user.jsp?id=<%= user.getId() %>" class="btn btn-edit">Modificar</a>
-                        <a href="index.jsp" class="btn btn-view">Volver</a>
+                        <%
+                            }
+                        %>
+                        <a href="javascript:history.back()" class="btn btn-view">Volver</a>
                     </div>
                 </div>
             </div>
@@ -106,7 +119,7 @@
     <div class="alert alert-danger" role="alert">
         La obra de arte con ID <%= id %> no se encontró.
     </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Volver</a>
 </div>
 <%
     }
@@ -116,7 +129,7 @@
     <div class="alert alert-danger" role="alert">
         El ID proporcionado no es válido. Por favor, intenta de nuevo.
     </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Volver</a>
 </div>
 <%
     }
@@ -126,7 +139,7 @@
     <div class="alert alert-danger" role="alert">
         No se proporcionó un ID válido. Por favor, intenta de nuevo.
     </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Volver</a>
 </div>
 <%
     }

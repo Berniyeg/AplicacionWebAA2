@@ -4,7 +4,6 @@
 <%@ page import="com.svalero.artmarket.dao.ArtworkDao" %>
 <%@ page import="com.svalero.artmarket.util.CurrencyUtils" %>
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,9 +51,9 @@
 
 <body>
 <div class="container">
-    <h1 class="page-title">Detalle de la Obra de Arte</h1>
+    <h1 class="page-title">Detail of artwork</h1>
 </div>
-    <%
+<%
     // Validar el parámetro "id"
     String idViewArtwork = request.getParameter("id");
     if (idViewArtwork != null && !idViewArtwork.isEmpty()) {
@@ -64,57 +63,58 @@
             Database.connect();
             Artwork artwork = Database.jdbi.withExtension(ArtworkDao.class, dao -> dao.getArtwork(id));
             if (artwork != null) {
-    %>
+%>
 <div class="container">
     <div class="card">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="../artmarket_pictures/artwork/<%= artwork.getPicture() %>" class="card-img" alt="Obra de Arte Detalle">
+                <img src="../artmarket_pictures/artwork/<%= artwork.getPicture() %>" class="card-img" alt="Detail of artwork">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h3 class="card-title"><strong><%= artwork.getTitle() %></strong></h3>
                     <p class="card-text"><%= artwork.getDescription() %></p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Precio: <%= CurrencyUtils.format(artwork.getPrice()) %></li>
+                        <li class="list-group-item">Price:  <%= CurrencyUtils.format(artwork.getPrice()) %></li>
                     </ul>
-                    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+                    <a href="javascript:history.back()" class="btn btn-secondary ">Back</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    <%
-            } else {
-    %>
+<%
+} else {
+%>
 <div class="container">
     <div class="alert alert-danger" role="alert">
         La obra de arte con ID <%= id %> no se encontró.
     </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Back</a>
 </div>
-    <%
-            }
-        } catch (NumberFormatException e) {
-    %>
+<%
+    }
+} catch (NumberFormatException e) {
+%>
 <div class="container">
     <div class="alert alert-danger" role="alert">
         El ID proporcionado no es válido. Por favor, intenta de nuevo.
     </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Volver</a>
 </div>
-    <%
-        }
-    } else {
-    %>
+<%
+    }
+} else {
+%>
 <div class="container">
     <div class="alert alert-danger" role="alert">
         No se proporcionó un ID válido. Por favor, intenta de nuevo.
     </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Volver</a>
 </div>
-    <%
+<%
     }
-    %>
+%>
 
 <%@include file="includes/footer.jsp" %>
+</body>
