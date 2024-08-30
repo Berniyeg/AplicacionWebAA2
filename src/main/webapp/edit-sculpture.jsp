@@ -70,13 +70,17 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary" id="edit-button">
-            <% if (id == 0) { %>
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary" id="edit-button">
+                <% if (id == 0) { %>
                 Submit
-            <% } else { %>
+                <% } else { %>
                 Modify
-            <% } %>
-        </button>
+                <% } %>
+            </button>
+            <a href="javascript:history.back()" class="btn btn-secondary ml-2">Back</a>
+        </div>
+
         <input type="hidden" name="id" value="<%= id %>"/>
     </form>
 

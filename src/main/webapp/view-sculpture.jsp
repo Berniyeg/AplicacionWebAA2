@@ -4,11 +4,10 @@
 <%@ page import="com.svalero.artmarket.domain.Sculpture" %>
 <%@ page import="com.svalero.artmarket.dao.SculptureDao" %>
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail of the sculpture</title>
+    <title>Detail of the Sculpture</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -52,9 +51,10 @@
 
 <body>
 <div class="container">
-    <h1>Detail of the sculpture</h1>
+    <h1 class="page-title">Detail of the Sculpture</h1>
 </div>
-    <%
+
+<%
     // Validar el parámetro "id"
     String idViewSculpture = request.getParameter("id");
     if (idViewSculpture != null && !idViewSculpture.isEmpty()) {
@@ -64,58 +64,60 @@
             Database.connect();
             Sculpture sculpture = Database.jdbi.withExtension(SculptureDao.class, dao -> dao.getSculpture(id));
             if (sculpture != null) {
-    %>
+%>
 <div class="container">
     <div class="card">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="../artmarket_pictures/sculpture/<%= sculpture.getPicture() %>" class="card-img" alt="Obra de Arte Detalle">
+                <img src="../artmarket_pictures/sculpture/<%= sculpture.getPicture() %>" class="card-img" alt="Sculpture Detail">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h3 class="card-title"><strong><%= sculpture.getTitle() %></strong></h3>
                     <p class="card-text"><%= sculpture.getDescription() %></p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Precio: <%= CurrencyUtils.format(sculpture.getPrice()) %></li>
+                        <li class="list-group-item">Price: <%= CurrencyUtils.format(sculpture.getPrice()) %></li>
                     </ul>
                     <p class="card-text"><%= sculpture.getMaterial() %></p>
-                    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+                    <a href="javascript:history.back()" class="btn btn-secondary ">Back</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    <%
-            } else {
-    %>
+<%
+} else {
+%>
 <div class="container">
     <div class="alert alert-danger" role="alert">
-        La obra de arte con ID <%= id %> no se encontró.
+        The sculpture with ID <%= id %> was not found.
     </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Back</a>
 </div>
-    <%
-            }
-        } catch (NumberFormatException e) {
-    %>
-<div class="container">
-    <div class="alert alert-danger" role="alert">
-        El ID proporcionado no es válido. Por favor, intenta de nuevo.
-    </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
-</div>
-    <%
-        }
-    } else {
-    %>
-<div class="container">
-    <div class="alert alert-danger" role="alert">
-        No se proporcionó un ID válido. Por favor, intenta de nuevo.
-    </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
-</div>
-    <%
+<%
     }
-    %>
+} catch (NumberFormatException e) {
+%>
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+        The provided ID is invalid. Please try again.
+    </div>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Back</a>
+</div>
+<%
+    }
+} else {
+%>
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+        No valid ID was provided. Please try again.
+    </div>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Back</a>
+</div>
+<%
+    }
+%>
 
 <%@include file="includes/footer.jsp" %>
+
+</body>

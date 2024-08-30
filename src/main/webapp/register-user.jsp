@@ -3,17 +3,14 @@
 <%@ page import="com.svalero.artmarket.dao.Database" %>
 <%@ page import="com.svalero.artmarket.dao.UserDao" %>
 
-
 <%@include file="includes/header-style.jsp"%>
 
 <%
     int id;
     User user = null;
     if (request.getParameter("id") == null) {
-        // Se accede al formulario para crear una nueva actividad
         id = 0;
     } else {
-        // Se accede al formulario para editar una actividad existente
         id = Integer.parseInt(request.getParameter("id"));
         Database.connect();
         user = Database.jdbi.withExtension(UserDao.class, dao -> dao.getUser(id));
@@ -64,33 +61,39 @@
         </div>
         <% } %>
 
-        <%  if (role.equals("admin")) { %>
+        <% if (role.equals("admin")) { %>
         <% if (id == 0) { %>
         <div class="form-group">
             <label for="role">Role</label>
-            <select class="form-control" id="role" name="role" >
+            <select class="form-control" id="role" name="role">
                 <option value="" disabled selected>Select Role</option>
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
             </select>
         </div>
-        <% } }%>
+        <% } %>
+        <% } %>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary" id="submit-button">
-            <% if (id == 0) { %>
-            Submit
-            <% } else { %>
-            Modify
-            <% } %>
-        </button>
+        <!-- Submit and Back Buttons -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="submit-button">
+                <% if (id == 0) { %>
+                Submit
+                <% } else { %>
+                Modify
+                <% } %>
+            </button>
+            <a href="javascript:history.back()" class="btn btn-secondary ml-2">Back</a>
+        </div>
+
         <input type="hidden" name="id" value="<%= id %>"/>
     </form>
 
     <div id="result"></div>
 
 </div>
-</body>
 
 <%@include file="includes/register-user-ajax.jsp"%>
 <%@include file="includes/footer.jsp"%>
+
+</body>

@@ -210,6 +210,7 @@
     HttpSession currentSession = request.getSession();
     String role = "anonymous";
     String username = "";
+    String idProfile = "";
 
     if (currentSession.getAttribute("role") != null) {
         role = currentSession.getAttribute("role").toString();
@@ -217,6 +218,9 @@
 
     if (currentSession.getAttribute("username") != null) {
         username = currentSession.getAttribute("username").toString();
+    }
+    if (currentSession.getAttribute("id") != null) {
+        idProfile = currentSession.getAttribute("id").toString();
     }
 %>
 
@@ -242,14 +246,21 @@
             </li>
             <%
             } else {
+                boolean isAdmin = role.equals("admin");
             %>
             <li class="nav-item">
                 <span class="nav-link nav-link-saludo">Welcome, <%= username %>!</span>
             </li>
+            <%
+                if (!isAdmin) {
+            %>
             <li class="nav-item">
-                <a class="nav-link" href="profile.jsp?id=2" title="Profile"><i class="fas fa-user"></i>
+                <a class="nav-link" href="profile.jsp?id=<%= idProfile %>" title="Profile"><i class="fas fa-user"></i>
                     Profile</a>
             </li>
+            <%
+                }
+            %>
             <li class="nav-item">
                 <a class="nav-link" href="logout" title="Logout"><i class="fas fa-sign-out-alt"></i> Logout </a>
             </li>
@@ -260,4 +271,3 @@
     </div>
 </nav>
 </body>
-

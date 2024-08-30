@@ -30,13 +30,10 @@
             color: #f8f9fa; /* Color del texto en las tarjetas */
         }
         .card-text {
-            color: #adb5bd; /* Color del texto secundario */
+            color: #f8f9fa; /* Color del texto secundario */
             border-bottom: 1px solid #6c757d; /* Línea gris inferior */
             padding-bottom: 10px; /* Espaciado inferior */
             margin-bottom: 10px; /* Espaciado inferior */
-            display: flex;
-            justify-content: space-between; /* Distribuye los botones a la derecha */
-            align-items: center; /* Alinea verticalmente los botones */
         }
         .card-text:last-of-type {
             border-bottom: none; /* Quitar borde en el último campo */
@@ -48,7 +45,7 @@
         .btn-edit {
             background-color: #6c757d; /* Botón verde para modificar */
             color: white;
-            margin-left: 10px; /* Espaciado a la izquierda del botón */
+            margin-right: 10px; /* Espaciado a la derecha del botón */
         }
         .btn {
             border-radius: 20px; /* Bordes redondeados */
@@ -65,6 +62,13 @@
     </style>
 </head>
 <%
+    HttpSession currentSession = request.getSession();
+    String role = "";
+
+    if (currentSession.getAttribute("role") != null) {
+        role = currentSession.getAttribute("role").toString();
+    }
+
     String idProfile = request.getParameter("id");
     if (idProfile != null && !idProfile.isEmpty()) {
         try {
@@ -82,17 +86,25 @@
             <div class="card profile-card">
                 <div class="card-body">
                     <h5 class="card-title text-center">Perfil de Usuario</h5>
-                    <p class="card-text"><strong>User: </strong> <%= user.getUsername() %> </p>
-                    <p class="card-text"><strong>Name: <%= user.getName() %></strong>
-                        <a href="edit-name.jsp" class="btn btn-edit">Modificar</a>
+                    <p class="card-text"><strong>User: </strong> <%= user.getUsername() %></p>
+                    <p class="card-text">
+                        <strong>Name: </strong> <%= user.getName() %>
                     </p>
                     <p class="card-text">
                         <strong>Phone: </strong> <%= user.getPhone() %>
-                        <a href="edit-phone.jsp" class="btn btn-edit">Modificar</a>
                     </p>
-                    <p class="card-text"><strong>Email: </strong> <%= user.getEmail() %> </p>
+                    <p class="card-text">
+                        <strong>Email: </strong> <%= user.getEmail() %>
+                    </p>
                     <div class="btn-group-center">
-                        <a href="index.jsp" class="btn btn-view">Volver</a>
+                        <%
+                            if (!role.equals("admin")) {
+                        %>
+                        <a href="register-user.jsp?id=<%= user.getId() %>" class="btn btn-edit">Modificar</a>
+                        <%
+                            }
+                        %>
+                        <a href="javascript:history.back()" class="btn btn-view">Volver</a>
                     </div>
                 </div>
             </div>
@@ -107,7 +119,7 @@
     <div class="alert alert-danger" role="alert">
         La obra de arte con ID <%= id %> no se encontró.
     </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Volver</a>
 </div>
 <%
     }
@@ -117,7 +129,7 @@
     <div class="alert alert-danger" role="alert">
         El ID proporcionado no es válido. Por favor, intenta de nuevo.
     </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Volver</a>
 </div>
 <%
     }
@@ -127,7 +139,7 @@
     <div class="alert alert-danger" role="alert">
         No se proporcionó un ID válido. Por favor, intenta de nuevo.
     </div>
-    <a href="index.jsp" class="btn btn-outline-light back-button">Volver</a>
+    <a href="javascript:history.back()" class="btn btn-outline-light back-button">Volver</a>
 </div>
 <%
     }

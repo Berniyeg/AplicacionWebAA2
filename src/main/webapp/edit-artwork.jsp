@@ -28,9 +28,9 @@
 <body>
 <div class="container mt-5">
     <% if (id == 0) { %>
-        <h2>Create New Artwork</h2>
+    <h2>Create New Artwork</h2>
     <% } else { %>
-        <h2>Modify Artwork</h2>
+    <h2>Modify Artwork</h2>
     <% } %>
     <form id="artwork-form" enctype="multipart/form-data">
         <!-- Title -->
@@ -62,20 +62,24 @@
                    name="picture" placeholder="starry_night.jpg" maxlength="50">
         </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary" id="edit-button">
-            <% if (id == 0) { %>
+        <!-- Submit and Back Buttons -->
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary" id="edit-button">
+                <% if (id == 0) { %>
                 Submit
-            <% } else { %>
+                <% } else { %>
                 Modify
-            <% } %>
-        </button>
+                <% } %>
+            </button>
+            <a href="javascript:history.back()" class="btn btn-secondary ml-2">Back</a>
+        </div>
+
         <input type="hidden" name="id" value="<%= id %>"/>
     </form>
 
     <div id="result"></div>
-
 </div>
 </body>
+
 
 <%@include file="includes/footer.jsp"%>
