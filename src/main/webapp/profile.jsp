@@ -34,7 +34,7 @@
         <div class="col-md-6">
             <div class="card profile-card">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Perfil de Usuario</h5>
+                    <h4 class="card-title text-center">User profile</h4>
                     <p class="card-text"><strong>User: </strong> <%= user.getUsername() %></p>
                     <p class="card-text">
                         <strong>Name: </strong> <%= user.getName() %>

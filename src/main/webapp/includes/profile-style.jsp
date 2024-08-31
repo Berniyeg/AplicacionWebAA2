@@ -1,5 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-
 <style>
     body {
         background-color: #343a40;
