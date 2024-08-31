@@ -8,71 +8,64 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <style>
-        /* General */
         body {
-            background-color: #343a40; /* Fondo oscuro */
-            color: #f8f9fa; /* Color del texto */
-            font-family: 'Arial', sans-serif; /* Fuente moderna */
-        }
+            background-color: #343a40;
+            color: #f8f9fa;
+            font-family: 'Arial', sans-serif;         }
 
-        /* Cabecera */
         .header {
-            background: #495057; /* Fondo oscuro */
-            color: #f8f9fa; /* Color del texto */
+            background: #495057;
+            color: #f8f9fa;
             padding: 40px 0;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .header h1 {
-            font-size: 2.5rem; /* Tamaño de fuente más grande para el título */
+            font-size: 2.5rem;
             margin-bottom: 10px;
         }
 
         .header p {
-            font-size: 1.1rem; /* Tamaño de fuente para la descripción */
+            font-size: 1.1rem;
         }
 
-        /* Pie de página */
         .footer {
-            background: #495057; /* Fondo oscuro */
-            color: #f8f9fa; /* Color del texto */
+            background: #495057;
+            color: #f8f9fa;
             padding: 20px 0;
             text-align: center;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Barra de navegación */
         .navbar-light .navbar-nav .nav-link,
         .navbar-light .navbar-brand {
-            color: #f8f9fa; /* Color del texto en la barra de navegación */
+            color: #f8f9fa;
         }
 
         .navbar-nav .nav-item {
-            margin-left: 15px; /* Espaciado entre los ítems de navegación */
+            margin-left: 15px;
         }
 
         .navbar-nav .nav-item .nav-link {
             display: flex;
             align-items: center;
-            transition: color 0.3s; /* Transición suave para el cambio de color */
+            transition: color 0.3s;
         }
 
         .navbar-nav .nav-item .nav-link:hover {
-            color: #adb5bd; /* Color de texto al pasar el cursor */
+            color: #adb5bd;
         }
 
-        /* Resaltado */
         .highlight {
-            background-color: #435bf4; /* Fondo azul para resaltar */
-            color: #ffffff; /* Color del texto */
-            border-radius: 20px; /* Bordes redondeados */
-            padding: 8px 16px; /* Espaciado más amplio */
+            background-color: #435bf4;
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 8px 16px;
             text-decoration: none;
             font-weight: bold;
         }
 
-        /* Estilos para las pestañas */
         .tab {
             overflow: hidden;
             border-bottom: 1px solid #ccc;
@@ -80,7 +73,6 @@
             text-align: center;
         }
 
-        /* Botones de pestañas */
         .tab button {
             background-color: inherit;
             border: none;
@@ -92,114 +84,107 @@
             margin: 0 5px;
         }
 
-        /* Botones de pestañas activos */
         .tab button.active {
             background-color: #ccc;
         }
 
-        /* Contenido de las pestañas */
         .tabcontent {
             display: none;
         }
 
-        /* Mostrar contenido activo */
         .tabcontent.active {
             display: block;
         }
 
 
-        /* Secciones */
         .artwork, .sculpture {
-            margin: 30px 0; /* Margen más amplio */
+            margin: 30px 0;
         }
 
         .card {
             margin-bottom: 20px;
-            background: #495057; /* Fondo oscuro para las tarjetas */
-            border: none; /* Sin borde */
-            border-radius: 10px; /* Bordes redondeados */
-            overflow: hidden; /* Asegura que el contenido no sobresalga */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra de tarjeta */
-            transition: box-shadow 0.3s; /* Transición suave para la sombra */
+            background: #495057;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s;
         }
 
         .card:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
         .card-img-top {
-            border-bottom: 2px solid #6c757d; /* Borde inferior en la imagen */
+            border-bottom: 2px solid #6c757d;
         }
 
         .card-body {
             padding: 20px;
             display: flex;
-            flex-direction: column; /* Disposición en columna para alinear elementos */
-            align-items: center; /* Alinea horizontalmente al centro */
+            flex-direction: column;
+            align-items: center;
         }
 
         .card-title {
-            font-size: 1.25rem; /* Tamaño de fuente del título */
+            font-size: 1.25rem;
             margin-bottom: 10px;
         }
 
         .card-text {
-            font-size: 1rem; /* Tamaño de fuente del texto */
+            font-size: 1rem;
             margin-bottom: 10px;
         }
 
         .card-price {
-            font-weight: bold;
-            margin-bottom: 15px; /* Espacio debajo del precio */
+            margin-bottom: 15px;
         }
 
-        /* Botones */
         .btn {
-            margin: 5px 0; /* Espaciado vertical entre botones */
-            border-radius: 20px; /* Bordes redondeados */
-            padding: 10px 20px; /* Tamaño de botones */
+            margin: 5px 0;
+            border-radius: 20px;
+            padding: 10px 20px;
             font-weight: bold;
-            text-decoration: none; /* Elimina el subrayado */
-            transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .btn:hover {
-            transform: none; /* Elimina el efecto de elevación */
+            transform: none;
         }
 
         .btn-delete {
-            background-color: #dc3545; /* Rojo para eliminar */
+            background-color: #dc3545;
             color: #ffffff;
         }
 
         .btn-delete:hover {
-            background-color: #c82333; /* Rojo más oscuro al pasar el cursor */
+            background-color: #c82333;
         }
 
         .btn-edit {
-            background-color: #6c757d; /* Gris para modificar */
+            background-color: #6c757d;
             color: #ffffff;
         }
 
         .btn-edit:hover {
-            background-color: #5a6268; /* Gris más oscuro al pasar el cursor */
+            background-color: #5a6268;
         }
 
         .btn-view {
-            background-color: #28a745; /* Verde para ver */
+            background-color: #6d9a78;
             color: #ffffff;
         }
 
         .btn-view:hover {
-            background-color: #218838; /* Verde más oscuro al pasar el cursor */
+            background-color: #218838;
         }
 
-        /* Contenedor de botones */
         .btn-container {
             display: flex;
-            justify-content: center; /* Centra los botones horizontalmente */
-            gap: 10px; /* Espaciado entre botones */
-            flex-wrap: wrap; /* Permite que los botones se envuelvan si es necesario */
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
 

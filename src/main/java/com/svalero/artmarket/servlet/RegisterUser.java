@@ -43,7 +43,7 @@ public class RegisterUser extends HttpServlet {
                     dao -> dao.countUserByUsername(username));
 
             if (existingUserCount > 0 && id == 0) {
-                sendWarning("El usuario con ese nombre ya existe.", response);
+                sendWarning("The user with that name already exists.", response);
                 return;
             }
 
@@ -54,30 +54,30 @@ public class RegisterUser extends HttpServlet {
                 affectedRows = Database.jdbi.withExtension(UserDao.class,
                         dao -> dao.addUser(username, password, name, phone, email, finalRole));
                 if (affectedRows > 0) {
-                    sendMessage("Usuario registrado correctamente.", response);
+                    sendMessage("Successfully registered user.", response);
                 } else {
-                    sendError("Error al registrar el usuario.", response);
+                    sendError("Error registering user.", response);
                 }
             } else {
                 // Actualizar usuario existente
                 affectedRows = Database.jdbi.withExtension(UserDao.class,
                         dao -> dao.updateUser(name, phone, id));
                 if (affectedRows > 0) {
-                    sendMessage("Usuario modificado correctamente.", response);
+                    sendMessage("User modified successfully.", response);
                 } else {
-                    sendError("Error al modificar el usuario.", response);
+                    sendError("Error modifying user.", response);
                 }
             }
 
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();
-            sendError("Error interno del servidor", response);
+            sendError("Internal Server Error", response);
         } catch (SQLException sqle) {
             sqle.printStackTrace();
-            sendError("Error conectando con la base de datos", response);
+            sendError("Error connecting to the database", response);
         } catch (NumberFormatException nfe) {
             nfe.printStackTrace();
-            sendError("Formato de ID no válido", response);
+            sendError("Invalid ID format", response);
         }
     }
 }

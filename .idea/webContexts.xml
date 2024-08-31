@@ -6,7 +6,9 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/edit-artwork.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/includes/header-style.jsp" value="file://$PROJECT_DIR$/src/main/webapp/includes" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/includes/prueba.jsp" value="file://$PROJECT_DIR$/src/main/webapp/includes" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/includes/view-artwork-style.jsp" value="file://$PROJECT_DIR$/src/main/webapp/includes" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/profile.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view-sculpture.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <script>
+    // Función para abrir una pestaña
     function openTab(evt, tabName) {
         // Ocultar todos los contenidos de pestañas
         var i, tabcontent, tablinks;
@@ -18,11 +19,21 @@
         // Mostrar la pestaña seleccionada y agregar la clase "active" al botón que abrió la pestaña
         document.getElementById(tabName).style.display = "block";
         evt.currentTarget.className += " active";
+
+        // Guardar la pestaña activa en localStorage
+        localStorage.setItem("activeTab", tabName);
     }
 
-    // Por defecto, abrir la primera pestaña
+    // Restaurar la pestaña activa al cargar la página
     document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector(".tablinks").click();
+        var activeTab = localStorage.getItem("activeTab") || "artworks"; // Por defecto "artworks"
+        var tabLinks = document.getElementsByClassName("tablinks");
+        for (var i = 0; i < tabLinks.length; i++) {
+            if (tabLinks[i].getAttribute("onclick").includes(activeTab)) {
+                tabLinks[i].click();
+                break;
+            }
+        }
     });
 
 </script>

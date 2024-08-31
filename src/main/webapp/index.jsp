@@ -7,13 +7,7 @@
 <%@ page import="com.svalero.artmarket.dao.*" %>
 
 <%@include file="includes/header-style.jsp" %>
-
-<script>
-    $(document).ready(function () {
-        $("#search-input").focus();
-    });
-</script>
-
+<%@include file="includes/ajax/search-ajax.jsp" %>
 
 <header class="header">
     <div class="container">
@@ -91,12 +85,9 @@
                             <img src="../artmarket_pictures/artwork/<%= artwork.getPicture() %>" class="card-img-top"
                                  alt="Obra de Arte">
                             <div class="card-body">
-                                <h3 class="card-title"><strong><%= artwork.getTitle() %>
-                                </strong></h3>
-                                <p class="card-text"><%= artwork.getDescription() %>
-                                </p>
-                                <p class="card-price">Price: <%= CurrencyUtils.format(artwork.getPrice()) %>
-                                </p>
+                                <h2 class="card-title"><strong><%= artwork.getTitle() %></strong></h2>
+                                <p class="card-text"><strong>Description:  </strong><%= artwork.getDescription() %></p>
+                                <p class="card-price"><strong>Price: </strong><%= CurrencyUtils.format(artwork.getPrice()) %></p>
                                 <a href="view-artwork.jsp?id=<%= artwork.getId() %>" class="btn btn-view">View</a>
                                 <% if (role.equals("admin")) { %>
                                 <a href="edit-artwork.jsp?id=<%= artwork.getId() %>" class="btn btn-edit">Modify</a>
@@ -138,18 +129,13 @@
                             <img src="../artmarket_pictures/sculpture/<%= sculpture.getPicture() %>"
                                  class="card-img-top" alt="Escultura">
                             <div class="card-body">
-                                <h3 class="card-title"><strong><%= sculpture.getTitle() %>
-                                </strong></h3>
-                                <p class="card-text"><%= sculpture.getDescription() %>
-                                </p>
-                                <p class="card-text"><%= sculpture.getMaterial() %>
-                                </p>
-                                <p class="card-price">Price: <%= CurrencyUtils.format(sculpture.getPrice()) %>
-                                </p>
+                                <h2 class="card-title"><strong><%= sculpture.getTitle() %></strong></h2>
+                                <p class="card-text"><strong>Description:  </strong><%= sculpture.getDescription() %></p>
+                                <p class="card-text"><strong>Material:  </strong><%= sculpture.getMaterial() %></p>
+                                <p class="card-price"><strong>Price:  </strong><%= CurrencyUtils.format(sculpture.getPrice()) %></p>
                                 <a href="view-sculpture.jsp?id=<%= sculpture.getId() %>" class="btn btn-view">View</a>
                                 <% if (role.equals("admin")) { %>
-                                <a href="edit-sculpture.jsp?id=<%= sculpture.getId() %>"
-                                   class="btn btn-edit">Modify</a>
+                                <a href="edit-sculpture.jsp?id=<%= sculpture.getId() %>" class="btn btn-edit">Modify</a>
                                 <a href="javascript:void(0);" class="btn btn-delete"
                                    onclick="eliminarSculpture(<%= sculpture.getId() %>)">Delete</a>
                                 <% } %>
@@ -193,8 +179,8 @@
                                     <span class="me-3"><strong>Email: </strong> <%= user.getEmail() %></span>
                                     <span class="me-3"><strong>Rol: </strong> <%= user.getRole() %></span>
                                     <div class="user-actions">
-                                        <a href="profile.jsp?id=<%= user.getId() %>" class="btn btn-success btn-sm me-2">View</a>
-                                        <a href="register-user.jsp?id=<%= user.getId() %>" class="btn btn-secondary btn-sm me-2">Modify</a>
+                                        <a href="profile.jsp?id=<%= user.getId() %>" class="btn btn-view">View</a>
+                                        <a href="register-user.jsp?id=<%= user.getId() %>" class="btn btn-edit">Modify</a>
                                         <a href="javascript:void(0);" class="btn btn-delete" onclick="eliminarUser(<%= user.getId() %>)">Delete</a>
                                     </div>
                                 </div>
@@ -209,9 +195,9 @@
 </main>
 
 
-<%@include file="includes/script-tab.jsp" %>
-<%@include file="includes/remove-artwork-ajax.jsp" %>
-<%@include file="includes/remove-sculpture-ajax.jsp" %>
-<%@include file="includes/remove-user-ajax.jsp" %>
+<%@include file="includes/ajax/script-tab.jsp" %>
+<%@include file="includes/ajax/remove-artwork-ajax.jsp" %>
+<%@include file="includes/ajax/remove-sculpture-ajax.jsp" %>
+<%@include file="includes/ajax/remove-user-ajax.jsp" %>
 
 <%@include file="includes/footer.jsp" %>

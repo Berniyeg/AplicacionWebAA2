@@ -93,7 +93,7 @@
 
 </div>
 
-<%@include file="includes/register-user-ajax.jsp"%>
+<%@include file="includes/ajax/register-user-ajax.jsp"%>
 <%@include file="includes/footer.jsp"%>
 
 </body>
