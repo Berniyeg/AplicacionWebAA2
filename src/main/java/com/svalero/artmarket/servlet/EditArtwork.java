@@ -42,7 +42,7 @@ public class EditArtwork extends HttpServlet {
                     dao -> dao.countArtworkByTitle(title));
 
             if (existingArtworkCount > 0 && id == 0) {
-                sendWarning("La obra de arte con ese título ya existe.", response);
+                sendWarning("The artwork with that title already exists.", response);
                 return;
             }
 
@@ -51,17 +51,17 @@ public class EditArtwork extends HttpServlet {
                 affectedRows = Database.jdbi.withExtension(ArtworkDao.class,
                         dao -> dao.addArtwork(title, description, price, filename));
                 if (affectedRows > 0) {
-                    sendMessage("Obra de arte subida correctamente.", response);
+                    sendMessage("Artwork uploaded successfully.", response);
                 } else {
-                    sendError("Error al subir la obra de arte.", response);
+                    sendError("Error uploading artwork.", response);
                 }
             } else {
                 affectedRows = Database.jdbi.withExtension(ArtworkDao.class,
                         dao -> dao.updateArtwork(title, description, price, filename, id));
                 if (affectedRows > 0) {
-                    sendMessage("Obra de arte modificada correctamente.", response);
+                    sendMessage("Successfully modified artwork.", response);
                 } else {
-                    sendMessage("Error al modificar la obra de arte.", response);
+                    sendMessage("Error modifying the artwork.", response);
                 }
             }
 

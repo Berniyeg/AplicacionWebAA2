@@ -3,35 +3,7 @@
 <head>
     <title>Login</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #343a40; /* Dark background */
-            color: #f8f9fa; /* Text color */
-        }
-        .login-container {
-            margin-top: 50px;
-        }
-        .login-card {
-            background-color: #495057; /* Dark background for the card */
-            border: 1px solid #6c757d; /* Light gray border */
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .form-control {
-            background-color: #6c757d; /* Gray background for form fields */
-            color: #f8f9fa; /* Text color in form fields */
-        }
-        .btn-primary {
-            background-color: #007bff; /* Color for the login button */
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3; /* Darker color for the button on hover */
-        }
-        .card-title {
-            color: #f8f9fa; /* Text color in the card title */
-        }
-    </style>
+    <%@include file="includes/login-style.jsp"%>
 </head>
 <body>
 
@@ -63,4 +35,4 @@
 </div>
 </body>
 
-<%@include file="includes/login-ajax.jsp"%>
+<%@include file="includes/ajax/login-ajax.jsp"%>

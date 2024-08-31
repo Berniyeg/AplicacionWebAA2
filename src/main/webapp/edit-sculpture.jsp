@@ -4,7 +4,7 @@
 <%@ page import="com.svalero.artmarket.dao.SculptureDao" %>
 
 <%@include file="includes/header-style.jsp"%>
-<%@include file="includes/edit-sculpture-ajax.jsp"%>
+<%@include file="includes/ajax/edit-sculpture-ajax.jsp"%>
 
 <%
     if (!role.equals("admin") && !role.equals("user")) {

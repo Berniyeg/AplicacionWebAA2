@@ -24,7 +24,6 @@ public class Profile extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         try {
-            // Obtener parámetros del formulario
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String name = request.getParameter("name");
@@ -44,30 +43,30 @@ public class Profile extends HttpServlet {
                 affectedRows = Database.jdbi.withExtension(UserDao.class,
                         dao -> dao.addUser(username, password, name, phone, email, role));
                 if (affectedRows > 0) {
-                    sendMessage("Usuario registrado correctamente.", response);
+                    sendMessage("Successfully registered user.", response);
                 } else {
-                    sendError("Error al registrar el usuario.", response);
+                    sendError("Error registering user.", response);
                 }
             } else {
                 // Actualizar usuario existente
                 affectedRows = Database.jdbi.withExtension(UserDao.class,
                         dao -> dao.updateUser(name, phone, id));
                 if (affectedRows > 0) {
-                    sendMessage("Usuario modificado correctamente.", response);
+                    sendMessage("User modified successfully.", response);
                 } else {
-                    sendError("Error al modificar el usuario.", response);
+                    sendError("Error modifying user.", response);
                 }
             }
 
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();
-            sendError("Error interno del servidor", response);
+            sendError("Internal Server Error", response);
         } catch (SQLException sqle) {
             sqle.printStackTrace();
-            sendError("Error conectando con la base de datos", response);
+            sendError("Error connecting to the database", response);
         } catch (NumberFormatException nfe) {
             nfe.printStackTrace();
-            sendError("Formato de ID no válido", response);
+            sendError("Invalid ID format", response);
         }
     }
 }
